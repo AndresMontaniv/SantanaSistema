@@ -235,40 +235,23 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'ADM CompraVenta',
+            'icon'    => 'fas fa-dollar-sign',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Compras',
+                    'url'  => 'compras',
+                    'icon'    => 'fas fa-dollar-sign',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Ventas',
+                    'url'  => 'ventas',
+                    'icon'    => 'fas fa-dollar-sign',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Productos',
+                    'url'  => 'productos',
+                    'icon'    => 'fas fa-dollar-sign',
                 ],
             ],
         ],
