@@ -3,44 +3,48 @@
 @section('title', 'Santana')
 
 @section('content_header')
-    <h1>Listar Empleados</h1>
+    <h1>Listar Atenciones</h1>
 @stop
 
 @section('content')
 
 
 <div class="card">
-        <div class="card-header">
-            <a href="{{url('/empleados/create')}}"class="btn btn-primary btb-sm">Registrar Empleado</a>
-        </div>
+  <div class="card-header">
+      <a href="{{url('/atencions/create')}}"class="btn btn-primary btb-sm">Registrar Atencion</a>
   </div>
+</div>
+
 <div class="card">
   <div class="card-body">
-      <table class="table table-striped" id="empleados" >
+      <table class="table table-striped" id="atencions" >
 
         <thead>
 
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">CI</th>
-            <th scope="col">Nombre Completo</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Empleado</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Monto Total</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($empleados as $empleado)
+          @foreach ($atencions as $atencion)
 
             <tr>
-              <td>{{$empleado->id}}</td>
-              <td>{{$empleado->ci}}</td>
-              <td>{{$empleado->nombre}}</td>
+              <td>{{$atencion->id}}</td>
+              <td>{{DB::table('servicios')->where('id',$atencion->servicioId)->value('nombre')}}</td>
+              <td>{{DB::table('empleados')->where('id',$atencion->empleadoId)->value('nombre')}}</td>
+              <td>{{DB::table('clientes')->where('id',$atencion->clienteId)->value('nombre')}}</td>
+              <td>{{$atencion->montoTotal}}</td>
               <td>
-                <form action="{{url('/empleados/'.$empleado->id)}}" method="post">
+                <form action="{{url('/atencions/'.$atencion->id)}}" method="post">
                   @csrf
                   @method('delete')
-                  <a class="btn btn-primary btn-sm" href="{{route('empleados.show', $empleado)}}">Ver</a>
-                    
-                  <a href="{{url('/empleados/'.$empleado->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
+                  <a class="btn btn-primary btn-sm" href="{{route('atencions.show', $atencion)}}">Ver</a>
+                  <a href="{{url('/atencions/'.$atencion->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
                   <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                   value="Borrar">Eliminar</button> 
                 </form>
@@ -68,7 +72,7 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-         $('#empleados').DataTable();
+         $('#atencions').DataTable();
         } );
     </script>
 @stop

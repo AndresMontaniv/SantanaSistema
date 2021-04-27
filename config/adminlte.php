@@ -229,46 +229,41 @@ return [
             'route'  => 'home',
             'icon'   => 'fas fa-home',
         ],
+        
         [
-            'text' => 'Empleados',
-            'url'  => 'empleados',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'ADM PERSONAS',
+            'icon'    => 'fas fa-cut',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Empleados',
+                    'url'  => 'empleados',
+                    'icon' => 'fas fa-fw fa-user',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Clientes',
+                    'url'  => 'clientes',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'ADM ATENCIONES',
+            'icon'    => 'fas fa-cut',
+            'submenu' => [
+                [
+                    'text' => 'Atenciones',
+                    'url'  => 'atencions',
+                    'icon' => 'fas fa-fw fa-user',
                 ],
                 [
-                    'text' => 'level_one',
+                    'text' => 'Servicios',
+                    'url'  => 'servicios',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Pagos',
                     'url'  => '#',
+                    'icon' => 'fas fa-fw fa-user',
                 ],
             ],
         ],

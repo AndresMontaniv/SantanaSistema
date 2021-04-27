@@ -17,17 +17,17 @@
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">Nombre Completo: </h5>
-                        <h5>{{$empleado->nombre}}</h5>
+                        <h5>{{$cliente->nombre}}</h5>
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">Fecha de Nacimiento: </h5>
-                        <h5>{{$empleado->fechaNac}}</h5>
+                        <h5>{{$cliente->fechaNac}}</h5>
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">Sexo: </h5>
                         <?php
                         $sexo="NULO";
-                        if ($empleado->sexo==="M"){
+                        if ($cliente->sexo==="M"){
                             $sexo="Masculino";
                         }
                         else{
@@ -38,10 +38,14 @@
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">Telefono: </h5>
-                        <h5>{{$empleado->telefono}}</h5>
+                        <h5>{{$cliente->telefono}}</h5>
                     </div>
                     <div class="row">
-                        <a href="{{url('/empleados/')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>
+                        <h5 class="font-weight-bold px-2">Email: </h5>
+                        <h5>{{$cliente->email}}</h5>
+                    </div>
+                    <div class="row">
+                        <a href="{{url('/clientes/')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>
                     </div>
                 </div>
             </div>
