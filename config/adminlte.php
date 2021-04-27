@@ -229,10 +229,22 @@ return [
             'route'  => 'home',
             'icon'   => 'fas fa-home',
         ],
+        
         [
-            'text' => 'Empleados',
-            'url'  => 'empleados',
-            'icon' => 'fas fa-fw fa-user',
+            'text'    => 'ADM PERSONAS',
+            'icon'    => 'fas fa-cut',
+            'submenu' => [
+                [
+                    'text' => 'Empleados',
+                    'url'  => 'empleados',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Clientes',
+                    'url'  => 'clientes',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+            ],
         ],
         [
             'text'    => 'ADM CompraVenta',
@@ -252,6 +264,28 @@ return [
                     'text' => 'Productos',
                     'url'  => 'productos',
                     'icon'    => 'fas fa-dollar-sign',
+                ],
+            ],
+        ],
+
+            [
+                 'text'    => 'ADM ATENCIONES',
+                 'icon'    => 'fas fa-cut',
+                 'submenu' => [
+                [
+                    'text' => 'Atenciones',
+                    'url'  => 'atencions',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Servicios',
+                    'url'  => 'servicios',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Pagos',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-user',
                 ],
             ],
         ],

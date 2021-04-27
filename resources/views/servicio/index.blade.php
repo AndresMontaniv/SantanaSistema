@@ -3,7 +3,7 @@
 @section('title', 'Santana')
 
 @section('content_header')
-    <h1>Listar Empleados</h1>
+    <h1>Listar Servicios</h1>
 @stop
 
 @section('content')
@@ -11,36 +11,35 @@
 
 <div class="card">
         <div class="card-header">
-            <a href="{{url('/empleados/create')}}"class="btn btn-primary btb-sm">Registrar Empleado</a>
+            <a href="{{url('/servicios/create')}}"class="btn btn-primary btb-sm">Registrar Servicio</a>
         </div>
   </div>
 <div class="card">
   <div class="card-body">
-      <table class="table table-striped" id="empleados" >
+      <table class="table table-striped" id="servicios" >
 
         <thead>
 
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">CI</th>
-            <th scope="col">Nombre Completo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($empleados as $empleado)
+          @foreach ($servicios as $servicio)
 
             <tr>
-              <td>{{$empleado->id}}</td>
-              <td>{{$empleado->ci}}</td>
-              <td>{{$empleado->nombre}}</td>
+              <td>{{$servicio->id}}</td>
+              <td>{{$servicio->nombre}}</td>
+              <td>{{$servicio->precio}}</td>
               <td>
-                <form action="{{url('/empleados/'.$empleado->id)}}" method="post">
+                <form action="{{url('/servicios/'.$servicio->id)}}" method="post">
                   @csrf
                   @method('delete')
-                  <a class="btn btn-primary btn-sm" href="{{route('empleados.show', $empleado)}}">Ver</a>
                     
-                  <a href="{{url('/empleados/'.$empleado->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
+                  <a href="{{url('/servicios/'.$servicio->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
                   <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                   value="Borrar">Eliminar</button> 
                 </form>
@@ -68,7 +67,7 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-         $('#empleados').DataTable();
+         $('#servicios').DataTable();
         } );
     </script>
 @stop
