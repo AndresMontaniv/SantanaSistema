@@ -289,6 +289,28 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'ADM GASTOS',
+            'icon'    => 'fas fa-cut',
+            'submenu' => [
+         
+           [
+               'text' => 'Gastos Personales',
+               'url'  => 'gastoPersonals',
+               'icon' => 'fas fa-fw fa-user',
+           ],
+           [
+               'text' => 'Pagos SB',
+               'url'  => '#',
+               'icon' => 'fas fa-fw fa-user',
+           ],
+           [
+            'text' => 'Servicios basicos',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+       ],
+   ],
     ],
 
     /*

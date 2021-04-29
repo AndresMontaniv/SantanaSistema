@@ -11,6 +11,8 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\AtencionController;
 
+use App\Http\Controllers\GastoPersonalController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,3 +41,5 @@ Route::resource('productos', ProductoController::class);
 Route::resource('clientes', CLienteController::class);
 Route::resource('servicios', ServicioController::class);
 Route::resource('atencions', AtencionController::class);
+
+Route::resource('gastoPersonals', GastoPersonalController::class);
