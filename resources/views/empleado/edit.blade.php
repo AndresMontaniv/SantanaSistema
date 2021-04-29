@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Consultorio-Sonrie')
+@section('title', 'Santana')
 
 @section('content_header')
     <h1>Editar Empleado</h1>
@@ -61,6 +61,7 @@
             <br>
 
             <button  class="btn btn-danger btn-sm" type="submit">Guardar</button>
+            <a href="{{url('/empleados/')}}"class="btn btn-warning text-white btn-sm ">Volver</a>
             <a href="{{url('/empleados/')}}"class="btn btn-warning text-white btn-sm ">Volver</a>
         </form>
 
