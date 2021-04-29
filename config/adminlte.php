@@ -247,9 +247,31 @@ return [
             ],
         ],
         [
-            'text'    => 'ADM ATENCIONES',
-            'icon'    => 'fas fa-cut',
+            'text'    => 'ADM CompraVenta',
+            'icon'    => 'fas fa-dollar-sign',
             'submenu' => [
+                [
+                    'text' => 'Compras',
+                    'url'  => 'compras',
+                    'icon'    => 'fas fa-dollar-sign',
+                ],
+                [
+                    'text' => 'Ventas',
+                    'url'  => 'ventas',
+                    'icon'    => 'fas fa-dollar-sign',
+                ],
+                [
+                    'text' => 'Productos',
+                    'url'  => 'productos',
+                    'icon'    => 'fas fa-dollar-sign',
+                ],
+            ],
+        ],
+
+            [
+                 'text'    => 'ADM ATENCIONES',
+                 'icon'    => 'fas fa-cut',
+                 'submenu' => [
                 [
                     'text' => 'Atenciones',
                     'url'  => 'atencions',
