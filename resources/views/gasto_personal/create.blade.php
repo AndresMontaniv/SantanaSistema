@@ -15,6 +15,12 @@
 
             <h5>Detalle:</h5>
             <input type="text"  name="detalle" class="focus border-primary  form-control" >
+            <h5>Precio:</h5>
+            <input type="number"  name="precio"  class="focus border-primary  form-control">
+
+            @error('precio')
+                <p>DEBE INGRESAR BIEN SU PRECIO</p>
+            @enderror
             
             <h5>Cantidad:</h5>
             <input type="number"  name="cantidad"  class="focus border-primary  form-control">
@@ -22,17 +28,6 @@
             @error('cantidad')
                 <p>DEBE INGRESAR BIEN LA CANTIDAD</p>
             @enderror
-
-            <h5>Precio:</h5>
-            <input type="number"  name="precio"  class="focus border-primary  form-control">
-
-            @error('precio')
-                <p>DEBE INGRESAR BIEN SU PRECIO</p>
-            @enderror
-
-
-         
-            
             <br>
             <br>
 

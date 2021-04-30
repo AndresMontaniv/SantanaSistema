@@ -38,11 +38,11 @@ class GastoPersonalController extends Controller
     {
         $gastopersonals=gastoPersonal::create([
             'detalle'=> request('detalle'),
-            'cantidad'=> request('cantidad'),
             'precio'=> request('precio'),
+            'cantidad'=> request('cantidad'),
             'costo'=> request('cantidad')*request('precio'),
         ]);
-        return redirect('gastoPersonals');
+        return redirect()->route('gastoPersonals.index');
     }
 
     /**
@@ -53,7 +53,7 @@ class GastoPersonalController extends Controller
      */
     public function show(gastoPersonal $gastoPersonal)
     {
-        //
+        return view('gasto_personal.show',compact('gastoPersonal'));
     }
 
     /**
@@ -64,7 +64,7 @@ class GastoPersonalController extends Controller
      */
     public function edit(gastoPersonal $gastoPersonal)
     {
-        //
+        return view('gasto_personal.edit',compact('gastoPersonal'));
     }
 
     /**
@@ -76,7 +76,12 @@ class GastoPersonalController extends Controller
      */
     public function update(Request $request, gastoPersonal $gastoPersonal)
     {
-        //
+        $gastoPersonal->detalle=$request->detalle;
+        $gastoPersonal->precio=$request->precio;
+        $gastoPersonal->cantidad=$request->cantidad;
+        $gastoPersonal->costo=$request->precio*$request->cantidad;
+        $gastoPersonal->save();
+        return redirect()->route('gastoPersonals.index');
     }
 
     /**
@@ -87,6 +92,7 @@ class GastoPersonalController extends Controller
      */
     public function destroy(gastoPersonal $gastoPersonal)
     {
-        //
+        $gastoPersonal->delete();
+        return redirect()->route('gastoPersonals.index');
     }
 }

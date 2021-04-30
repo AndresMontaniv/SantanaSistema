@@ -16,8 +16,8 @@ class CreateGastoPersonalsTable extends Migration
         Schema::create('gasto_personals', function (Blueprint $table) {
             $table->id();
             $table->string('detalle');
-            $table->float('cantidad');
             $table->float('precio');
+            $table->float('cantidad');
             $table->float('costo');
             $table->timestamps();
         });

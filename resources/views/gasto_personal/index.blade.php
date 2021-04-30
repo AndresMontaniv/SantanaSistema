@@ -25,6 +25,7 @@
             <th scope="col">detalle</th>
             <th scope="col">Precio</th>
             <th scope="col">cantidad</th>
+            <th scope="col">costo</th>
           </tr>
         </thead>
         <tbody>
@@ -35,8 +36,9 @@
               <td>{{$gastoPersonal->detalle}}</td>
               <td>{{$gastoPersonal->precio}}</td>
               <td>{{$gastoPersonal->cantidad}}</td>
+              <td>{{$gastoPersonal->costo}}</td>
               <td>
-                <form action="{{url('/gastoPersonals/'.$gastoPersonal->id)}}" method="post">
+                <form action="{{route('gastoPersonals.destroy', $gastoPersonal)}}" method="post">
                   @csrf
                   @method('delete')
                   <a class="btn btn-primary btn-sm" href="{{route('gastoPersonals.show', $gastoPersonal)}}">Ver</a>
