@@ -12,6 +12,8 @@ use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\AtencionController;
 
 use App\Http\Controllers\GastoPersonalController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +45,5 @@ Route::resource('servicios', ServicioController::class);
 Route::resource('atencions', AtencionController::class);
 
 Route::resource('gastoPersonals', GastoPersonalController::class);
+
+Route::resource('users', UserController::class)->names('users');
