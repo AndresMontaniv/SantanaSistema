@@ -3,7 +3,7 @@
 @section('title', 'Santana')
 
 @section('content_header')
-    <h1>Listar Compras</h1>
+    <h1>Listar Notas de Compra</h1>
 @stop
 
 @section('content')
@@ -11,42 +11,40 @@
 
 <div class="card">
         <div class="card-header">
-            <form method="post" action="{{url('/compras')}}" novalidate >
-              @csrf
-              <input type="hidden"  name="userId" value="{{Auth::user()->id}}" class="focus border-primary  form-control" >
-              <button  class="btn btn-primary btb-sm" type="submit">Registrar Compra</button>
-          </form>
+            <a href="{{url('/notaCompras/create')}}"class="btn btn-primary btb-sm">Registrar Nota de Compra</a>
         </div>
   </div>
 <div class="card">
   <div class="card-body">
-      <table class="table table-striped" id="compras" >
+      <table class="table table-striped" id="notaCompras" >
 
         <thead>
 
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Usuario</th>
-            <th scope="col">Total</th>
+            <th scope="col">Compra Id</th>
+            <th scope="col">Producto Id</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Monto Total</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($compras as $compra)
+          @foreach ($notaCompras as $notaCompra)
 
             <tr>
-              <td>{{$compra->id}}</td>
-              <td>{{$compra->created_at}}</td>
-              <td>{{DB::table('users')->where('id',$compra->usuarioId)->value('name')}}</td>
-              <td>{{$compra->total}}</td>
+              <td>{{$notaCompra->id}}</td>
+              <td>{{$notaCompra->compraId}}</td>
+              <td>{{$notaCompra->productoId}}</td>
+              <td>{{$notaCompra->cantidad}}</td>
+              <td>{{$notaCompra->montoTotal}}</td>
               <td>
-                <form action="{{url('/compras/'.$compra->id)}}" method="post">
+                <form action="{{url('/notaCompras/'.$notaCompra->id)}}" method="post">
                   @csrf
                   @method('delete')
-                  <a class="btn btn-primary btn-sm" href="{{route('compras.show', $compra)}}">Ver</a>
+                  <a class="btn btn-primary btn-sm" href="{{route('notaCompras.show', $notaCompra)}}">Ver</a>
                     
-                  <a href="{{url('/compras/'.$compra->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
+                  <a href="{{url('/notaCompras/'.$notaCompra->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
                   <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                   value="Borrar">Eliminar</button> 
                 </form>
@@ -74,7 +72,7 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-         $('#compras').DataTable();
+         $('#notaCompras').DataTable();
         } );
     </script>
 @stop

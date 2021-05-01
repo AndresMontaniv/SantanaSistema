@@ -15,10 +15,11 @@ class CreateNotaComprasTable extends Migration
     {
         Schema::create('nota_compras', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('producto_id');
+            $table->unsignedBigInteger('productoId');
+            $table->unsignedBigInteger('compraId');
             $table->integer('cantidad');
             $table->float('montoTotal');
-            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

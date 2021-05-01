@@ -5,7 +5,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\ProductoController;
-
+use App\Http\Controllers\notaCompraController;
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicioController;
@@ -33,7 +33,7 @@ Route::resource('empleados', EmpleadoController::class);
 Route::resource('compras', CompraController::class);
 Route::resource('ventas', VentaController::class);
 Route::resource('productos', ProductoController::class);
-
+Route::resource('notaCompras', notaCompraController::class);
 
 
 Route::resource('clientes', CLienteController::class);

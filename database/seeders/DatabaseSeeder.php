@@ -6,6 +6,7 @@ use App\Models\Empleado;
 use App\Models\Cliente;
 use App\Models\Servicio;
 use App\Models\Metodo;
+use App\Models\Producto;
 
 use Illuminate\Database\Seeder;
 
@@ -123,5 +124,26 @@ class DatabaseSeeder extends Seeder
         $metodo3 = new Metodo();
         $metodo3->nombre = 'Tarjeta';
         $metodo3->save();
+
+        $producto1 = new Producto();
+        $producto1->nombre = 'Producto 1';
+        $producto1->precioDeCompra = '10';
+        $producto1->precioDeVenta = '12';
+        $producto1->stock = '0';
+        $producto1->save();
+
+        $producto2 = new Producto();
+        $producto2->nombre = 'Producto 2';
+        $producto2->precioDeCompra = '20';
+        $producto2->precioDeVenta = '22';
+        $producto2->stock = '0';
+        $producto2->save();
+
+        $producto3 = new Producto();
+        $producto3->nombre = 'Producto 3';
+        $producto3->precioDeCompra = '30';
+        $producto3->precioDeVenta = '32';
+        $producto3->stock = '0';
+        $producto3->save();
     }
 }

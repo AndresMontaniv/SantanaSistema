@@ -15,7 +15,6 @@ class CreateComprasTable extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->datetime('fecha');
             $table->unsignedBigInteger('usuarioId');
             $table->float('total')->nullable();
             $table->timestamps();

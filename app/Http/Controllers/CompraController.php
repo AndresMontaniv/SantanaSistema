@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compra;
+use App\Models\notaCompra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,8 +29,8 @@ class CompraController extends Controller
      */
     public function create()
     {
-        $users=DB::table('users')->get();
-        return view('compra.create',['users'=>$users]);
+        
+        
     }
 
     /**
@@ -40,11 +41,11 @@ class CompraController extends Controller
      */
     public function store(Request $request)
     {
-        $dato=Compra::create([
-            'fecha'=> request('fecha'),
-            'usuarioId'=> request('usuarioId'),
+        date_default_timezone_set("America/La_Paz");
+        $compra=Compra::create([
+            'usuarioId'=> request('userId'),
         ]);
-        return redirect('compras');
+        return redirect(route('notaCompras.show', $compra));
     }
 
     /**
@@ -56,9 +57,8 @@ class CompraController extends Controller
     public function show($id)
     {
         $compra=Compra::findOrFail($id);
-        return view('compra.show', compact('compra'));
-        
-        
+        $notas=DB::table('nota_compras')->where('compraId',$compra->id)->get();
+        return view('compra.show',compact('compra'),['notas'=>$notas]);
     }
 
     /**
@@ -69,9 +69,8 @@ class CompraController extends Controller
      */
     public function edit($id)
     {
-        $users=DB::table('users')->get();
         $compra=Compra::findOrFail($id);
-        return view('Compra.edit', compact('compra'),['users'=>$users]);
+        return redirect(route('notaCompras.show', $compra));
     }
 
     /**
@@ -104,6 +103,11 @@ class CompraController extends Controller
      */
     public function destroy($id)
     {
+        $notas=DB::table('nota_compras')->where('compraId',$id)->get();
+        foreach ($notas as $nota){
+            $notaId=$nota->id;
+            notaCompra::destroy($notaId);
+        }
         Compra::destroy($id);
         return redirect('compras');
     }
