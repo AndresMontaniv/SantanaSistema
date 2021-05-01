@@ -13,7 +13,7 @@
             <div class="row border"> 
                 <div class="col">
                     <div class="row">
-                        <h3 class="font-weight-bold px-2">DATOS</h3>
+                        <h3 class="font-weight-bold px-2">SERVICIO</h3>
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">NOMBRE: </h5>
