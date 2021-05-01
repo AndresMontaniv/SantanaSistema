@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Consultorio-Sonrie')
+@section('title', 'Santana')
 
 @section('content_header')
 @stop

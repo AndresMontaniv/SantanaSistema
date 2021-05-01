@@ -45,5 +45,10 @@ class DatabaseSeeder extends Seeder
         $user5->email= 'harold@gmail.com';
         $user5->password = bcrypt('harold');
         $user5->save();
+
+        $this->call(GastoSeeder::class);
+        $this->call(IngresoSeeder::class);
+        $this->call(ReporteSeeder::class);
+        $this->call(ComprobanteSeeder::class);
     }
 }

@@ -235,40 +235,29 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'ADM REPORTES',
+            'icon'    => 'fas fa-cut',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Gastos',
+                    'url'  => 'gastos',
+                    'icon' => 'fas fa-fw fa-shopping-cart',
+                ],
+                
+                [
+                    'text' => 'Ingresos',
+                    'url'  => 'ingresos',
+                    'icon' => 'fas fa-fw fa-credit-card',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Reporte Mensual',
+                    'url'  => 'reportes',
+                    'icon' => 'fas fa-fw fa-calculator',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Comprobantes',
+                    'url'  => 'comprobantes',
+                    'icon' => 'fas fa-fw fa-edit',
                 ],
             ],
         ],

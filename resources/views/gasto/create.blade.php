@@ -3,32 +3,32 @@
 @section('title', 'Santana')
 
 @section('content_header')
-    <h1>Registrar Empleado</h1>
+    <h1>Registrar Gasto</h1>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form method="post" action="{{url('/empleados')}}" novalidate >
+        <form method="post" action="{{url('/gastos')}}" novalidate >
 
             @csrf
-            <h5>Carnet de Identidad:</h5>
-            <input type="text"  name="ci" class="focus border-primary  form-control" >
+            <h5>ID GASTOS PERSONALES:</h5>
+            <input type="text"  name="idGastosPersonales" class="focus border-primary  form-control" >
 
-            @error('ci')
-            <p>DEBE INGRESAR BIEN SU CI</p>
+            @error('idGastosPersonales')
+            <p>DEBE INGRESAR EL ID DE GASTOS PERSONALES</p>
             @enderror
 
 
-            <h5>Nombre Completo:</h5>
-            <input type="text"  name="nombre" class="focus border-primary  form-control" >
+            <h5>ID PAGO SB:</h5>
+            <input type="text"  name="idPagosSB" class="focus border-primary  form-control" >
 
-            @error('nombre')
-            <p>DEBE INGRESAR BIEN SU NOMBRE</p>
+            @error('idPagosSB')
+            <p>DEBE INGRESAR EL ID PAGO DE SB </p>
             @enderror
 
 
-            <h5>Fecha de Nacimiento:</h5>
+            {{-- <h5>Fecha de Nacimiento:</h5>
             <input type="date"  name="fechaNac"  class="focus border-primary  form-control">
 
             @error('fechaNac')
@@ -54,13 +54,13 @@
 
             @error('telefono')
                 <p>DEBE INGRESAR BIEN SU TELEFONO</p>
-            @enderror
+            @enderror --}}
             
             <br>
             <br>
 
             <button  class="btn btn-danger btn-sm" type="submit">Registrar</button>
-            <a href="{{url('/empleados/')}}"class="btn btn-warning text-white btn-sm">Volver</a>
+            <a href="{{url('/gastos/')}}"class="btn btn-warning text-white btn-sm">Volver</a>
         </form>
 
     </div>
