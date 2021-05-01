@@ -229,10 +229,22 @@ return [
             'route'  => 'home',
             'icon'   => 'fas fa-home',
         ],
+        
         [
-            'text' => 'Empleados',
-            'url'  => 'empleados',
-            'icon' => 'fas fa-fw fa-user',
+            'text'    => 'ADM PERSONAS',
+            'icon'    => 'fas fa-cut',
+            'submenu' => [
+                [
+                    'text' => 'Empleados',
+                    'url'  => 'empleados',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Clientes',
+                    'url'  => 'clientes',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+            ],
         ],
         [
             'text'    => 'ADM REPORTES',
@@ -242,8 +254,7 @@ return [
                     'text' => 'Gastos',
                     'url'  => 'gastos',
                     'icon' => 'fas fa-fw fa-shopping-cart',
-                ],
-                
+                ],                
                 [
                     'text' => 'Ingresos',
                     'url'  => 'ingresos',
@@ -259,8 +270,73 @@ return [
                     'url'  => 'comprobantes',
                     'icon' => 'fas fa-fw fa-edit',
                 ],
+
             ],
         ],
+        [
+            'text'    => 'ADM CompraVenta',
+            'icon'    => 'fas fa-dollar-sign',
+            'submenu' => [
+                [
+                    'text' => 'Compras',
+                    'url'  => 'compras',
+                    'icon'    => 'fas fa-dollar-sign',
+                ],
+                [
+                    'text' => 'Ventas',
+                    'url'  => 'ventas',
+                    'icon'    => 'fas fa-dollar-sign',
+                ],
+                [
+                    'text' => 'Productos',
+                    'url'  => 'productos',
+                    'icon'    => 'fas fa-dollar-sign',
+                ],
+            ],
+        ],
+            [
+                 'text'    => 'ADM ATENCIONES',
+                 'icon'    => 'fas fa-cut',
+                 'submenu' => [
+                [
+                    'text' => 'Atenciones',
+                    'url'  => 'atencions',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Servicios',
+                    'url'  => 'servicios',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Pagos',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'ADM GASTOS',
+            'icon'    => 'fas fa-cut',
+            'submenu' => [
+         
+           [
+               'text' => 'Gastos Personales',
+               'url'  => 'gastoPersonals',
+               'icon' => 'fas fa-fw fa-user',
+           ],
+           [
+               'text' => 'Pagos SB',
+               'url'  => '#',
+               'icon' => 'fas fa-fw fa-user',
+           ],
+           [
+            'text' => 'Servicios Basicos',
+            'url'  => 'servicioBasicos',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+       ],
+   ],
     ],
 
     /*
