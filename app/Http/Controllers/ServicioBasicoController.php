@@ -14,7 +14,8 @@ class ServicioBasicoController extends Controller
      */
     public function index()
     {
-        //
+        $servicioBasicos=servicioBasico::all();
+        return view('servicio_basico.index', compact('servicioBasicos'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ServicioBasicoController extends Controller
      */
     public function create()
     {
-        //
+        return view('servicio_basico.create');
     }
 
     /**
@@ -35,7 +36,10 @@ class ServicioBasicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $servicioBasicos=servicioBasico::create([
+            'nombre'=> request('nombre'),
+        ]);
+        return redirect()->route('servicioBasicos.index');
     }
 
     /**
@@ -46,7 +50,7 @@ class ServicioBasicoController extends Controller
      */
     public function show(servicioBasico $servicioBasico)
     {
-        //
+        return view('servicio_basico.show',compact('servicioBasico'));
     }
 
     /**
@@ -57,7 +61,7 @@ class ServicioBasicoController extends Controller
      */
     public function edit(servicioBasico $servicioBasico)
     {
-        //
+        return view('servicio_basico.edit',compact('servicioBasico'));
     }
 
     /**
@@ -69,7 +73,9 @@ class ServicioBasicoController extends Controller
      */
     public function update(Request $request, servicioBasico $servicioBasico)
     {
-        //
+        $servicioBasico->nombre=$request->nombre;
+        $servicioBasico->save();
+        return redirect()->route('servicioBasicos.index');
     }
 
     /**
@@ -80,6 +86,7 @@ class ServicioBasicoController extends Controller
      */
     public function destroy(servicioBasico $servicioBasico)
     {
-        //
+        $servicioBasico->delete();
+        return redirect()->route('servicioBasicos.index');
     }
 }

@@ -305,8 +305,8 @@ return [
                'icon' => 'fas fa-fw fa-user',
            ],
            [
-            'text' => 'Servicios basicos',
-            'url'  => '#',
+            'text' => 'Servicios Basicos',
+            'url'  => 'servicioBasicos',
             'icon' => 'fas fa-fw fa-user',
         ],
        ],
