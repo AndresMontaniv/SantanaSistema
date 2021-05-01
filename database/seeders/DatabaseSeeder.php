@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use App\Models\Servicio;
 use App\Models\Metodo;
 use App\Models\Producto;
+use App\Models\Gasto;
 
 use Illuminate\Database\Seeder;
 
@@ -50,6 +51,11 @@ class DatabaseSeeder extends Seeder
         $user5->email= 'harold@gmail.com';
         $user5->password = bcrypt('harold');
         $user5->save();
+
+        $this->call(GastoSeeder::class);
+        $this->call(IngresoSeeder::class);
+        $this->call(ReporteSeeder::class);
+        $this->call(ComprobanteSeeder::class);
 
         $empleado1 = new Empleado();
         $empleado1->ci = '123456789';
