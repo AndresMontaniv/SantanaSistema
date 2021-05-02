@@ -26,7 +26,7 @@
             <p>DEBE INGRESAR BIEN EL NOMBRE DEL SERVICIO</p>
             @enderror
 
-              <h5>Monto:</h5>
+            <h5>Monto:</h5>
             <input type="number"  name="monto" value="{{$servicioBasico->monto}}" class="focus border-primary  form-control" >
             @error('monto')
             <p>DEBE INGRESAR BIEN EL NOMBRE EL MONTO</p>
