@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\pagoServicioBasico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagoServicioBasicoController extends Controller
 {
@@ -14,7 +15,8 @@ class PagoServicioBasicoController extends Controller
      */
     public function index()
     {
-        //
+        $pagoServicioBasicos=pagoServicioBasico::all();
+        return view('pago_servicio_basico.index', compact('pagoServicioBasicos'));
     }
 
     /**
@@ -24,7 +26,8 @@ class PagoServicioBasicoController extends Controller
      */
     public function create()
     {
-        //
+        $servicioBasicos=DB::table('servicio_basicos')->get();
+        return view('pago_servicio_basico.create',['servicioBasicos'=>$servicioBasicos]);
     }
 
     /**
@@ -35,7 +38,12 @@ class PagoServicioBasicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        date_default_timezone_set("America/La_Paz");
+        $pagoServicioBasicos=pagoServicioBasico::create([
+            'servicioBasico_id'=> request('servicioBasicoId'),
+            'monto'=> request('monto'),
+        ]);
+        return redirect()->route('pagoServicioBasicos.index');
     }
 
     /**
@@ -46,7 +54,7 @@ class PagoServicioBasicoController extends Controller
      */
     public function show(pagoServicioBasico $pagoServicioBasico)
     {
-        //
+        return view('pago_servicio_basico.show',compact('pagoServicioBasico'));
     }
 
     /**
@@ -57,7 +65,9 @@ class PagoServicioBasicoController extends Controller
      */
     public function edit(pagoServicioBasico $pagoServicioBasico)
     {
-        //
+        $servicioBasicos=DB::table('servicio_basicos')->get();
+        return view('pago_servicio_basico.edit',compact('pagoServicioBasico'),
+        ['servicioBasicos'=>$servicioBasicos]);
     }
 
     /**
@@ -69,7 +79,11 @@ class PagoServicioBasicoController extends Controller
      */
     public function update(Request $request, pagoServicioBasico $pagoServicioBasico)
     {
-        //
+        date_default_timezone_set("America/La_Paz");
+        $pagoServicioBasico->servicioBasico_id=$request->servicioBasicoId;
+        $pagoServicioBasico->monto=$request->monto;
+        $pagoServicioBasico->save();
+        return redirect()->route('pagoServicioBasicos.index');
     }
 
     /**
@@ -80,6 +94,7 @@ class PagoServicioBasicoController extends Controller
      */
     public function destroy(pagoServicioBasico $pagoServicioBasico)
     {
-        //
+        $pagoServicioBasico->delete();
+        return redirect()->route('pagoServicioBasicos.index');
     }
 }
