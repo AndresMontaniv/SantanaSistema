@@ -16,6 +16,7 @@ class CreateServicioBasicosTable extends Migration
         Schema::create('servicio_basicos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->float('monto')->nullable();
             $table->timestamps();
         });
     }

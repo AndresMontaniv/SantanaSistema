@@ -20,6 +20,10 @@
                         <h5>{{$servicioBasico->nombre}}</h5>
                     </div>
                     <div class="row">
+                        <h5 class="font-weight-bold px-2">MONTO FIJO: </h5>
+                        <h5>{{$servicioBasico->monto}}</h5>
+                    </div>
+                    <div class="row">
                         <h5 class="font-weight-bold px-2">FECHA: </h5>
                         <h5>{{$servicioBasico->created_at}}</h5>
                     </div>
