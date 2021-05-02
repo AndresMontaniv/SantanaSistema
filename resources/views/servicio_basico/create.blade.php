@@ -18,6 +18,12 @@
             @error('nombre')
                 <p>DEBE INGRESAR BIEN SU NOMBRE</p>
             @enderror
+
+            <h5>Monto(fijo):</h5>
+            <input type="text"  name="monto" class="focus border-primary  form-control" >
+            @error('nombre')
+                <p>DEBE INGRESAR BIEN EL MONTO</p>
+            @enderror
             <br>
             <br>
 
