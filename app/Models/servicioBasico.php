@@ -9,5 +9,5 @@ class servicioBasico extends Model
 {
     use HasFactory;
     protected $table="servicio_basicos";
-    protected $fillable=['nombre'];
+    protected $fillable=['nombre','monto'];
 }
