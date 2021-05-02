@@ -24,8 +24,6 @@
             <th scope="col">Id</th>
             <th scope="col">detalle</th>
             <th scope="col">Precio</th>
-            <th scope="col">cantidad</th>
-            <th scope="col">costo</th>
           </tr>
         </thead>
         <tbody>
@@ -35,8 +33,6 @@
               <td>{{$gastoPersonal->id}}</td>
               <td>{{$gastoPersonal->detalle}}</td>
               <td>{{$gastoPersonal->precio}}</td>
-              <td>{{$gastoPersonal->cantidad}}</td>
-              <td>{{$gastoPersonal->costo}}</td>
               <td>
                 <form action="{{route('gastoPersonals.destroy', $gastoPersonal)}}" method="post">
                   @csrf

@@ -9,5 +9,5 @@ class gastoPersonal extends Model
 {
     use HasFactory;
     protected $table="gasto_personals";
-    protected $fillable=['detalle','cantidad','precio','costo'];
+    protected $fillable=['detalle','precio'];
 }

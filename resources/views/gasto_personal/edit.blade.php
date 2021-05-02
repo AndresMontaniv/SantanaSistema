@@ -21,17 +21,7 @@
  
             @error('precio')
                 <p>DEBE INGRESAR BIEN SU PRECIO</p>
-            @enderror
-
-            <h5>Cantidad:</h5>
-            <input type="number" step="0.0001" min= "0" name="cantidad" value="{{$gastoPersonal->cantidad}}"  class="focus border-primary  form-control">
-
-            @error('cantidad')
-                <p>DEBE INGRESAR BIEN LA CANTIDAD</p>
-            @enderror
-
-         
-            
+            @enderror            
             <br>
             <br>
 

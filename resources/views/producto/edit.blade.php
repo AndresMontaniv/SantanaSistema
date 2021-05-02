@@ -33,12 +33,6 @@
             <p>Escriba el precio de su producto</p>
             @enderror
 
-            <h5>STOCK:</h5>
-            <input type="text" value="{{$producto->stock}}"  name="stock" class="focus border-primary  form-control" >
-
-            @error('stock')
-            <p>STOCK</p>
-            @enderror
 
             <br>
 

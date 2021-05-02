@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\gastoPersonal;
 use Illuminate\Http\Request;
+use App\Models\Gasto;
 
 class GastoPersonalController extends Controller
 {
@@ -36,12 +37,17 @@ class GastoPersonalController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $gastopersonals=gastoPersonal::create([
             'detalle'=> request('detalle'),
             'precio'=> request('precio'),
-            'cantidad'=> request('cantidad'),
-            'costo'=> request('cantidad')*request('precio'),
-        ]);
+        ]); 
+
+        // $gasto=Gasto::create([
+        //     'gastosPersonales'=> $gastopersonals->id,
+        //     'total'=> request('precio'),
+        // ]);
+
         return redirect()->route('gastoPersonals.index');
     }
 
@@ -78,8 +84,6 @@ class GastoPersonalController extends Controller
     {
         $gastoPersonal->detalle=$request->detalle;
         $gastoPersonal->precio=$request->precio;
-        $gastoPersonal->cantidad=$request->cantidad;
-        $gastoPersonal->costo=$request->precio*$request->cantidad;
         $gastoPersonal->save();
         return redirect()->route('gastoPersonals.index');
     }
