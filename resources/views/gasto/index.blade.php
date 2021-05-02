@@ -28,7 +28,9 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Gastos Personales</th>
+            <th scope="col">Compras</th>
             <th scope="col">Servicios Básicos</th>
+            <th scope="col">Total</th>
           </tr>
         </thead>
         <tbody>
@@ -36,8 +38,10 @@
 
             <tr>
               <td>{{ $gasto-> id }}</td>
-              <td>{{ $gasto-> idGastosPersonales }}</td>
-              <td>{{ $gasto-> idPagosSB }}</td> 
+              <td>{{ $gasto-> gastosPersonales }}</td>
+              <td>{{ $gasto-> compras }}</td> 
+              <td>{{ $gasto-> sb }}</td> 
+              <td>{{ $gasto-> total }}</td> 
               <td>
                 <form action="{{url('/gastos/'.$gasto->id)}}" method="post">
                   @csrf

@@ -15,15 +15,18 @@ class CreateGastosTable extends Migration
     {
         Schema::create('gastos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idGastosPersonales')->nullable();
-            $table->unsignedBigInteger('idPagosSB')->nullable();
+            $table->unsignedBigInteger('gastosPersonales')->nullable();
+            $table->unsignedBigInteger('sb')->nullable();
+            $table->unsignedBigInteger('compras')->nullable();
+            $table->float('total');
             $table->timestamps();
         
-           /*  $table->foreign('idGastosPersonales')->references('id')->on('gastosPersonales')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idPagoSV')->references('id')->on('pagoSV')->onDelete('cascade')->onUpdate('cascade');
-         */
+            $table->foreign('gastosPersonales')->references('id')->on('gasto_personals');
+            $table->foreign('compras')->references('id')->on('compras');
+            $table->foreign('sb')->references('id')->on('pago_servicio_basicos');
         });
     }
+
 
     /**
      * Reverse the migrations.

@@ -37,9 +37,10 @@ class GastoController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $gasto=Gasto::create([
-            'idGastosPersonales'=> request('idGastosPersonales'),
-            'idPagosSB'=> request('idPagosSB'),
+            'gastosPersonales'=> request('detalle'),
+            'total'=> request('precio'),
         ]);
         return redirect('gastos');
     }
