@@ -27,8 +27,10 @@
 
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Id Gastos</th>
-            <th scope="col">Id Ingresos </th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Total Gastos</th>
+            <th scope="col">Total Ingresos </th>
+            <th scope="col">General </th>
           </tr>
         </thead>
         <tbody>
@@ -36,8 +38,10 @@
 
             <tr>
               <td>{{ $reporte-> id }}</td>
-              <td>{{ $reporte-> idGastos }}</td>
-              <td>{{ $reporte-> idIngresos }}</td> 
+              <td>{{ $reporte-> created_at}}</td>
+              <td>{{ $reporte-> totalGastos }}</td>
+              <td>{{ $reporte-> totalIngresos }}</td> 
+              <td>{{ $reporte-> general }}</td> 
               <td>
                 <form action="{{url('/reportes/'.$reporte->id)}}" method="post">
                   @csrf
