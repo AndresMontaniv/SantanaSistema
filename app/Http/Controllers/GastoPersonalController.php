@@ -39,8 +39,6 @@ class GastoPersonalController extends Controller
         $gastopersonals=gastoPersonal::create([
             'detalle'=> request('detalle'),
             'precio'=> request('precio'),
-            'cantidad'=> request('cantidad'),
-            'costo'=> request('cantidad')*request('precio'),
         ]);
         return redirect()->route('gastoPersonals.index');
     }
@@ -78,8 +76,6 @@ class GastoPersonalController extends Controller
     {
         $gastoPersonal->detalle=$request->detalle;
         $gastoPersonal->precio=$request->precio;
-        $gastoPersonal->cantidad=$request->cantidad;
-        $gastoPersonal->costo=$request->precio*$request->cantidad;
         $gastoPersonal->save();
         return redirect()->route('gastoPersonals.index');
     }
