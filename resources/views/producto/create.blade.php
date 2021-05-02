@@ -34,12 +34,6 @@
             <p>Escriba el precio del producto</p>
             @enderror
             
-            <h5>STOCK:</h5>
-            <input type="text"  name="stock" class="focus border-primary  form-control" >
-
-            @error('stock')
-            <p>STOCK</p>
-            @enderror
 
 
             <br>
