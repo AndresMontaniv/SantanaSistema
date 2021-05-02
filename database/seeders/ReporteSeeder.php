@@ -14,15 +14,23 @@ class ReporteSeeder extends Seeder
      */
     public function run()
     {
-        $reprote1 = new Reporte();
-        $reprote1-> idGastos = "1";
-        $reprote1-> idIngresos = "111" ;
-        $reprote1->save();
+        $reporte1 = new Reporte();
+        $reporte1-> totalGastos = "1";
+        $reporte1-> totalIngresos = "1" ;
+        $reporte1-> general = "100.2";
+        $reporte1->save();
 
-        $reprote2 = new Reporte();
-        $reprote2-> idGastos = "232";
-        $reprote2-> idIngresos = "111" ;
-        $reprote2->save();
+        $reporte2 = new Reporte();
+        $reporte2-> totalGastos = "1";
+        $reporte2-> totalIngresos = "2" ;
+        $reporte2-> general = "1.2";
+        $reporte2->save();
+
+        $reporte3 = new Reporte();
+        $reporte3-> totalGastos = "2";
+        $reporte3-> totalIngresos = "1" ;
+        $reporte3-> general = "1212.2";
+        $reporte3->save();
 
     }
 }

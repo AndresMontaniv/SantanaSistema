@@ -15,8 +15,8 @@ class CreateGastosTable extends Migration
     {
         Schema::create('gastos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idGastosPersonales');
-            $table->unsignedBigInteger('idPagosSB');
+            $table->unsignedBigInteger('idGastosPersonales')->nullable();
+            $table->unsignedBigInteger('idPagosSB')->nullable();
             $table->timestamps();
         
            /*  $table->foreign('idGastosPersonales')->references('id')->on('gastosPersonales')->onDelete('cascade')->onUpdate('cascade');

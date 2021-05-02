@@ -275,7 +275,7 @@ return [
         ],
         [
             'text'    => 'ADM CompraVenta',
-            'icon'    => 'fas fa-dollar-sign',
+            'icon'    => 'fas fa-cut',
             'submenu' => [
                 [
                     'text' => 'Compras',
@@ -327,7 +327,7 @@ return [
            ],
            [
                'text' => 'Pagos SB',
-               'url'  => '#',
+               'url'  => 'pagoServicioBasicos',
                'icon' => 'fas fa-fw fa-user',
            ],
            [

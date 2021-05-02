@@ -3,7 +3,7 @@
 @section('title', 'Santana')
 
 @section('content_header')
-    <h1>Lista Ventas</h1>
+    <h1>Listar pago de servicios basicos</h1>
 @stop
 
 @section('content')
@@ -11,40 +11,36 @@
 
 <div class="card">
   <div class="card-header">
-      <form method="post" action="{{url('/ventas')}}" novalidate >
-        @csrf
-        <input type="hidden"  name="userId" value="{{Auth::user()->id}}" class="focus border-primary  form-control" >
-        <button  class="btn btn-primary btb-sm" type="submit">Registrar Venta</button>
-    </form>
+      <a href="{{route('pagoServicioBasicos.create')}}"class="btn btn-primary btb-sm">Registrar pago</a>
   </div>
 </div>
+
 <div class="card">
   <div class="card-body">
-      <table class="table table-striped" id="ventas" >
+      <table class="table table-striped" id="atencions" >
 
         <thead>
 
           <tr>
-            <th scope="col">Fecha</th>
-            <th scope="col">Usuario</th>
-            <th scope="col">Total</th>
+            <th scope="col">Id</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Monto</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($ventas as $venta)
+          @foreach ($pagoServicioBasicos as $pagoServicioBasico)
 
             <tr>
-              <td>{{$venta->fecha}}</td>
-              <td>{{$venta->usuarioId}}</td>
-              <td>{{$venta->total}}</td>
+              <td>{{$pagoServicioBasico->id}}</td>
+              <td>{{DB::table('servicio_basicos')->where('id',$pagoServicioBasico->servicioBasico_id)->value('nombre')}}</td>
+              <td>{{$pagoServicioBasico->monto}}</td>
               <td>
-                <form action="{{url('/ventas/'.$venta->id)}}" method="post">
+                <form action="{{route('pagoServicioBasicos.destroy',$pagoServicioBasico)}}" method="post">
                   @csrf
                   @method('delete')
-                  <a class="btn btn-primary btn-sm" href="{{route('ventas.show', $venta)}}">Ver</a>
-                    
-                  <a href="{{url('/ventas/'.$venta->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
+                  <a class="btn btn-primary btn-sm" href="{{route('pagoServicioBasicos.show', $pagoServicioBasico)}}">Ver</a>
+                  <a href="{{route('pagoServicioBasicos.edit',$pagoServicioBasico)}}"class="btn btn-info btn-sm">Editar</a>
                   <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                   value="Borrar">Eliminar</button> 
                 </form>
@@ -72,7 +68,7 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-         $('#ventas').DataTable();
+         $('#atencions').DataTable();
         } );
     </script>
 @stop

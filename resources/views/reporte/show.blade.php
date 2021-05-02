@@ -20,12 +20,16 @@
                         <h5>{{$reporte->id}}</h5>
                     </div>
                     <div class="row">
-                        <h5 class="font-weight-bold px-2">Id Gastos: </h5>
-                        <h5>{{$reporte-> idGastos}}</h5>
+                        <h5 class="font-weight-bold px-2">Total Gastos: </h5>
+                        <h5>{{$reporte-> totalGastos}}</h5>
                     </div>
                     <div class="row">
-                        <h5 class="font-weight-bold px-2">Id Ingresos : </h5>
-                        <h5>{{$reporte-> idIngresos}}</h5>
+                        <h5 class="font-weight-bold px-2">Total Ingresos : </h5>
+                        <h5>{{$reporte-> totalIngresos}}</h5>
+                    </div>
+                    <div class="row">
+                        <h5 class="font-weight-bold px-2"> General : </h5>
+                        <h5>{{$reporte-> general }}</h5>
                     </div>
                     <div class="row">
                         <a href="{{url('/reportes/')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>

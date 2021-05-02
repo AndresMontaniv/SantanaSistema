@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\notaVenta;
+use App\Models\Venta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class NotaVentaController extends Controller
 {
@@ -14,7 +17,8 @@ class NotaVentaController extends Controller
      */
     public function index()
     {
-        //
+        $notaVentas=notaVenta::all();
+        return view('notaVenta.index', compact('notaVentas'));
     }
 
     /**
@@ -35,7 +39,22 @@ class NotaVentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $productoId=request('productoId');
+        $ventaId=request('ventaId');
+        $cant=request('cantidad');
+        $monto=DB::table('productos')->where('id',$productoId)->value('precioDeVenta');
+        $notaVenta=notaVenta::create([
+            'ventaId'=> request('ventaId'),
+            'productoId'=> request('productoId'),
+            'cantidad'=> request('cantidad'),
+            'montoTotal'=> $monto*$cant,
+        ]);
+        $total=DB::table('nota_ventas')->where('ventaId',$ventaId)->sum('montoTotal');
+        DB::table('ventas')->where('id',$ventaId)->update([
+            'total'=>$total
+
+        ]);
+        return redirect(route('notaVentas.show', $ventaId));
     }
 
     /**
@@ -44,9 +63,12 @@ class NotaVentaController extends Controller
      * @param  \App\Models\notaVenta  $notaVenta
      * @return \Illuminate\Http\Response
      */
-    public function show(notaVenta $notaVenta)
+    public function show($id)
     {
-        //
+        $venta=Venta::findOrFail($id);
+        $notas=DB::table('nota_ventas')->where('ventaId',$venta->id)->get();
+        $productos=DB::table('productos')->get();
+        return view('notaVenta.create',compact('venta'),['productos'=>$productos, 'notas'=>$notas]);
     }
 
     /**
@@ -78,8 +100,10 @@ class NotaVentaController extends Controller
      * @param  \App\Models\notaVenta  $notaVenta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(notaVenta $notaVenta)
+    public function destroy($id)
     {
-        //
+        $ventaId=DB::table('nota_ventas')->where('id',$id)->value('ventaId');
+        notaVenta::destroy($id);
+        return redirect(route('notaVentas.show', $ventaId));
     }
 }

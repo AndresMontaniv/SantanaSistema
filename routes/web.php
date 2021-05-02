@@ -10,6 +10,7 @@ use App\Http\Controllers\CompraController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\notaCompraController;
+use App\Http\Controllers\notaVentaController;
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicioController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\AtencionController;
 
 use App\Http\Controllers\GastoPersonalController;
 use App\Http\Controllers\ServicioBasicoController;
+use App\Http\Controllers\PagoServicioBasicoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,7 @@ Route::resource('compras', CompraController::class);
 Route::resource('ventas', VentaController::class);
 Route::resource('productos', ProductoController::class);
 Route::resource('notaCompras', notaCompraController::class);
+Route::resource('notaVentas', notaVentaController::class);
 
 
 Route::resource('clientes', CLienteController::class);
@@ -53,3 +56,4 @@ Route::resource('atencions', AtencionController::class);
 
 Route::resource('gastoPersonals', GastoPersonalController::class);
 Route::resource('servicioBasicos', ServicioBasicoController::class);
+Route::resource('pagoServicioBasicos', PagoServicioBasicoController::class);

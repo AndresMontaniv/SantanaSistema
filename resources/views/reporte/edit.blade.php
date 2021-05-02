@@ -14,17 +14,17 @@
             @csrf
             @method('PATCH')
             <h5>ID GASTO:</h5>
-            <input type="text"  name="idGastos" value="{{$reporte->idGastos}}" class="focus border-primary  form-control" >
+            <input type="text"  name="totalGastos" value="{{$reporte->totalGastos}}" class="focus border-primary  form-control" >
 
-            @error('idGastos')
+            @error('totalGastos')
             <p>DEBE INGRESAR EL ID DE GASTO</p>
             @enderror
 
 
             <h5>ID INGRESOS: </h5>
-            <input type="text"  name="idIngresos" value="{{$reporte->idIngresos}}" class="focus border-primary  form-control" >
+            <input type="text"  name="totalIngresos" value="{{$reporte->totalIngresos}}" class="focus border-primary  form-control" >
 
-            @error('idIngresos')
+            @error('totalIngresos')
             <p>DEBE INGRESAR EL ID INGRESOS  </p>
             @enderror            
             <br>
