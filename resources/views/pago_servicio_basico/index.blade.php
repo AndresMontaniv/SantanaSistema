@@ -3,54 +3,44 @@
 @section('title', 'Santana')
 
 @section('content_header')
-    <h1>Listar Reportes</h1>
+    <h1>Listar pago de servicios basicos</h1>
 @stop
 
 @section('content')
 
-@if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{session('info')}}</strong>
-        </div>
-    @endif
 
 <div class="card">
-        <div class="card-header">
-            <a href="{{url('/reportes/create')}}"class="btn btn-primary btb-sm">Registrar Reportes Mensuales</a>
-        </div>
+  <div class="card-header">
+      <a href="{{route('pagoServicioBasicos.create')}}"class="btn btn-primary btb-sm">Registrar pago</a>
   </div>
+</div>
+
 <div class="card">
   <div class="card-body">
-      <table class="table table-striped" id="reportes" >
+      <table class="table table-striped" id="atencions" >
 
         <thead>
 
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Total Gastos</th>
-            <th scope="col">Total Ingresos </th>
-            <th scope="col">General </th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Monto</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($reportes as $reporte)
+          @foreach ($pagoServicioBasicos as $pagoServicioBasico)
 
             <tr>
-              <td>{{ $reporte-> id }}</td>
-              <td>{{ $reporte-> created_at}}</td>
-              <td>{{ $reporte-> totalGastos }}</td>
-              <td>{{ $reporte-> totalIngresos }}</td> 
-              <td>{{ $reporte-> general }}</td> 
+              <td>{{$pagoServicioBasico->id}}</td>
+              <td>{{DB::table('servicio_basicos')->where('id',$pagoServicioBasico->servicioBasico_id)->value('nombre')}}</td>
+              <td>{{$pagoServicioBasico->monto}}</td>
               <td>
-                <form action="{{url('/reportes/'.$reporte->id)}}" method="post">
+                <form action="{{route('pagoServicioBasicos.destroy',$pagoServicioBasico)}}" method="post">
                   @csrf
                   @method('delete')
-
-                  <a class="btn btn-primary btn-sm" href="{{route('reportes.show', $reporte)}}">Ver</a>
-                    
-                  <a href="{{url('/reportes/'.$reporte->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
-                  
+                  <a class="btn btn-primary btn-sm" href="{{route('pagoServicioBasicos.show', $pagoServicioBasico)}}">Ver</a>
+                  <a href="{{route('pagoServicioBasicos.edit',$pagoServicioBasico)}}"class="btn btn-info btn-sm">Editar</a>
                   <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                   value="Borrar">Eliminar</button> 
                 </form>
@@ -78,7 +68,7 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-         $('#reportes').DataTable();
+         $('#atencions').DataTable();
         } );
     </script>
 @stop

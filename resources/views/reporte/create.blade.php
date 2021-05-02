@@ -13,17 +13,17 @@
 
             @csrf
             <h5>ID GASTOS:</h5>
-            <input type="text"  name="idGastos" class="focus border-primary  form-control" >
+            <input type="text"  name="totalGastos" class="focus border-primary  form-control" >
 
-            @error('idGastos')
+            @error('totalGastos')
             <p>DEBE INGRESAR EL ID DE GASTOS</p>
             @enderror
 
 
             <h5>ID INGRESO:</h5>
-            <input type="text"  name="idIngresos" class="focus border-primary  form-control" >
+            <input type="text"  name="totalIngresos" class="focus border-primary  form-control" >
 
-            @error('idIngresos')
+            @error('totalIngresos')
             <p>DEBE INGRESAR EL ID INGRESO </p>
             @enderror
 

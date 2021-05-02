@@ -27,8 +27,8 @@
 
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Id Gastos Personales</th>
-            <th scope="col">Id Pagos SB</th>
+            <th scope="col">Gastos Personales</th>
+            <th scope="col">Servicios Básicos</th>
           </tr>
         </thead>
         <tbody>

@@ -327,7 +327,7 @@ return [
            ],
            [
                'text' => 'Pagos SB',
-               'url'  => '#',
+               'url'  => 'pagoServicioBasicos',
                'icon' => 'fas fa-fw fa-user',
            ],
            [

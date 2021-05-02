@@ -38,8 +38,8 @@ class ReporteController extends Controller
     public function store(Request $request)
     {
         $reporte=Reporte::create([
-            'idGastos'=> request('idGastos'),
-            'idIngresos'=> request('idIngresos'),
+            'totalGastos'=> request('totalGastos'),
+            'totalIngresos'=> request('totalIngresos'),
         ]);
         return redirect('reportes');
     }
@@ -78,8 +78,8 @@ class ReporteController extends Controller
     public function update(Request $request, $id)
     {
         DB::table('reportes')->where('id',$id)->update([
-            'idGastos'=> request('idGastos'),
-            'idIngresos'=> request('idIngresos'),
+            'totalGastos'=> request('totalGastos'),
+            'totalIngresos'=> request('totalIngresos'),
         ]);
         return redirect('reportes');
     }
