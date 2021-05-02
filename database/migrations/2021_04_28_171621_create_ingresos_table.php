@@ -15,8 +15,8 @@ class CreateIngresosTable extends Migration
     {
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idVentas');
-            $table->unsignedBigInteger('idPagos');
+            $table->unsignedBigInteger('idVentas')->nullable();
+            $table->unsignedBigInteger('idPagos')->nullable();
             $table->timestamps();
 
             /* $table->foreign('idVentas')->references('id')->on('ventas')->onDelete('cascade')->onUpdate('cascade');

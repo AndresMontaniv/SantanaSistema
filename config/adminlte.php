@@ -308,11 +308,6 @@ return [
                     'url'  => 'servicios',
                     'icon' => 'fas fa-fw fa-user',
                 ],
-                [
-                    'text' => 'Pagos',
-                    'url'  => '#',
-                    'icon' => 'fas fa-fw fa-user',
-                ],
             ],
         ],
         [

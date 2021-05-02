@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Atencion;
+use App\Models\Ingreso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -51,6 +52,10 @@ class AtencionController extends Controller
             'clienteId'=> request('clienteId'),
             'metodoId'=> request('metodoId'),
             'montoTotal'=> $montoTotal,
+        ]);
+        $ingreso=Ingreso::create([
+            'idVentas'=> null,
+            'idPagos'=> $atencion->id,
         ]);
         return redirect('atencions');
     }
