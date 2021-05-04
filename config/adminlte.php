@@ -247,8 +247,35 @@ return [
             ],
         ],
         [
+            'text'    => 'ADM REPORTES',
+            'icon'    => 'fas fa-cut',
+            'submenu' => [
+                [
+                    'text' => 'Gastos',
+                    'url'  => 'gastos',
+                    'icon' => 'fas fa-fw fa-shopping-cart',
+                ],                
+                [
+                    'text' => 'Ingresos',
+                    'url'  => 'ingresos',
+                    'icon' => 'fas fa-fw fa-credit-card',
+                ],
+                [
+                    'text' => 'Reporte Mensual',
+                    'url'  => 'reportes',
+                    'icon' => 'fas fa-fw fa-calculator',
+                ],
+                [
+                    'text' => 'Comprobantes',
+                    'url'  => 'comprobantes',
+                    'icon' => 'fas fa-fw fa-edit',
+                ],
+
+            ],
+        ],
+        [
             'text'    => 'ADM CompraVenta',
-            'icon'    => 'fas fa-dollar-sign',
+            'icon'    => 'fas fa-cut',
             'submenu' => [
                 [
                     'text' => 'Compras',
@@ -267,10 +294,9 @@ return [
                 ],
             ],
         ],
-
-            [
-                 'text'    => 'ADM ATENCIONES',
-                 'icon'    => 'fas fa-cut',
+        [
+            'text'    => 'ADM ATENCIONES',
+            'icon'    => 'fas fa-cut',
                  'submenu' => [
                 [
                     'text' => 'Atenciones',
@@ -280,11 +306,6 @@ return [
                 [
                     'text' => 'Servicios',
                     'url'  => 'servicios',
-                    'icon' => 'fas fa-fw fa-user',
-                ],
-                [
-                    'text' => 'Pagos',
-                    'url'  => '#',
                     'icon' => 'fas fa-fw fa-user',
                 ],
             ],
@@ -300,12 +321,12 @@ return [
                 ],
                 [
                     'text' => 'Pagos SB',
-                    'url'  => '#',
+                    'url'  => 'pagoServicioBasicos',
                     'icon' => 'fas fa-fw fa-user',
                 ],
                 [
-                    'text' => 'Servicios basicos',
-                    'url'  => '#',
+                    'text' => 'Servicios Basicos',
+                    'url'  => 'servicioBasicos',
                     'icon' => 'fas fa-fw fa-user',
                 ],
             ],
@@ -333,7 +354,6 @@ return [
             ],
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Menu Filters

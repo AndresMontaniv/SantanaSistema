@@ -1,0 +1,1 @@
+{{$compra->id}} sos el rey

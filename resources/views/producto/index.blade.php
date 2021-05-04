@@ -7,8 +7,12 @@
 @stop
 
 @section('content')
-    <div class="card=header">
-    <a href="{{url('/productos/create')}}" class="btn btn-primary"> Registrar producto</a>
+
+
+<div class="card">
+    <div class="card-header">
+        <a href="{{url('/productos/create')}}"class="btn btn-primary btb-sm">Registrar Producto</a>
+    </div>
 </div>
 <div class="card">
     <div class="card-body">
@@ -26,19 +30,21 @@
             <tbody>
                 @foreach($productos as $producto)
                <tr>
-                <th scope="col">{{$producto->id}}</th>
-                <th scope="col">{{$producto->nombre}}</th>
-                <th scope="col">{{$producto->precioDeCompra}}</th>
-                <th scope="col">{{$producto->precioDeVenta}}</th>
-                <th scope="col">{{$producto->stock}}</th>
+                <td>{{$producto->id}}</td>
+                <td>{{$producto->nombre}}</td>
+                <td>{{$producto->precioDeCompra}}</td>
+                <td>{{$producto->precioDeVenta}}</td>
+                <td>{{$producto->stock}}</td>
                 <td>
-                    <a href="{{route('productos.edit', $producto)}}" class="btn btn-primary btn-sm">Editar</a>
-                    <a href="{{route('productos.show',$producto)}}"    class="btn btn-primary btn-sm">Ver</a>
-                    <form action="{{route('productos.destroy',$producto)}}" method="post">
+                    <form action="{{url('/productos/'.$producto->id)}}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Estas Seguro')" value="borrar">Eliminar</button>
-                    </form>
+                        <a class="btn btn-primary btn-sm" href="{{route('productos.show', $producto)}}">Ver</a>
+                          
+                        <a href="{{url('/productos/'.$producto->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
+                        <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
+                        value="Borrar">Eliminar</button> 
+                      </form>
                 </td>
                </tr>
                 @endforeach

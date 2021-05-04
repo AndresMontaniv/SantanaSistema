@@ -62,7 +62,6 @@
 
             <button  class="btn btn-danger btn-sm" type="submit">Guardar</button>
             <a href="{{url('/empleados/')}}"class="btn btn-warning text-white btn-sm ">Volver</a>
-            <a href="{{url('/empleados/')}}"class="btn btn-warning text-white btn-sm ">Volver</a>
         </form>
 
     </div>

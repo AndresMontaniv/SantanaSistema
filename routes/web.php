@@ -1,11 +1,16 @@
 <?php
 
+use App\Http\Controllers\ComprobanteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\GastoController;
+use App\Http\Controllers\IngresoController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\ProductoController;
-
+use App\Http\Controllers\notaCompraController;
+use App\Http\Controllers\notaVentaController;
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicioController;
@@ -16,6 +21,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 
 
+use App\Http\Controllers\ServicioBasicoController;
+use App\Http\Controllers\PagoServicioBasicoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +43,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('empleados', EmpleadoController::class);
+Route::resource('gastos', GastoController::class);
+Route::resource('ingresos', IngresoController::class);
+Route::resource('reportes', ReporteController::class);
+Route::resource('comprobantes', ComprobanteController::class);
 Route::resource('compras', CompraController::class);
 Route::resource('ventas', VentaController::class);
 Route::resource('productos', ProductoController::class);
-
+Route::resource('notaCompras', notaCompraController::class);
+Route::resource('notaVentas', notaVentaController::class);
 
 
 Route::resource('clientes', CLienteController::class);
@@ -50,3 +62,5 @@ Route::resource('gastoPersonals', GastoPersonalController::class);
 
 Route::resource('users', UserController::class)->names('users');
 Route::resource('roles', RoleController::class)->names('roles');
+Route::resource('servicioBasicos', ServicioBasicoController::class);
+Route::resource('pagoServicioBasicos', PagoServicioBasicoController::class);

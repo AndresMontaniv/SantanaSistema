@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\notaCompra;
+use App\Models\Compra;
+use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NotaCompraController extends Controller
 {
@@ -14,7 +17,8 @@ class NotaCompraController extends Controller
      */
     public function index()
     {
-        //
+        $notaCompras=notaCompra::all();
+        return view('notaCompra.index', compact('notaCompras'));
     }
 
     /**
@@ -24,7 +28,6 @@ class NotaCompraController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,18 +38,44 @@ class NotaCompraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $productoId=request('productoId');
+        $compraId=request('compraId');
+        $cant=request('cantidad');
+        $monto=DB::table('productos')->where('id',$productoId)->value('precioDeCompra');
+        $notaCompra=notaCompra::create([
+            'compraId'=> request('compraId'),
+            'productoId'=> request('productoId'),
+            'cantidad'=> request('cantidad'),
+            'montoTotal'=> $monto*$cant,
+        ]);
+        $total=DB::table('nota_compras')->where('compraId',$compraId)->sum('montoTotal');
+        DB::table('compras')->where('id',$compraId)->update([
+            'total'=>$total
+        ]);
+        DB::table('gastos')->where('compras',$compraId)->update([
+            'total'=>$total
+        ]);
+        $productoStock=DB::table('productos')->where('id',$productoId)->value('stock');
+        $cant=request('cantidad');
+        $nuevoStock=$productoStock+$cant;
+        DB::table('productos')->where('id',$productoId)->update([
+            'stock'=>$nuevoStock
+        ]);
+        return redirect(route('notaCompras.show', $compraId));
     }
-
+    
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\notaCompra  $notaCompra
      * @return \Illuminate\Http\Response
      */
-    public function show(notaCompra $notaCompra)
+    public function show($id)
     {
-        //
+        $compra=Compra::findOrFail($id);
+        $notas=DB::table('nota_compras')->where('compraId',$compra->id)->get();
+        $productos=DB::table('productos')->get();
+        return view('notaCompra.create',compact('compra'),['productos'=>$productos, 'notas'=>$notas]);
     }
 
     /**
@@ -69,7 +98,7 @@ class NotaCompraController extends Controller
      */
     public function update(Request $request, notaCompra $notaCompra)
     {
-        //
+     //
     }
 
     /**
@@ -78,8 +107,28 @@ class NotaCompraController extends Controller
      * @param  \App\Models\notaCompra  $notaCompra
      * @return \Illuminate\Http\Response
      */
-    public function destroy(notaCompra $notaCompra)
+    public function destroy($id)
     {
-        //
+        $compraId=DB::table('nota_compras')->where('id',$id)->value('compraId');
+        $productoId=DB::table('nota_compras')->where('id',$id)->value('productoId');
+        $productoStock=DB::table('productos')->where('id',$productoId)->value('stock');
+        $cantidad=DB::table('nota_compras')->where('id',$id)->value('cantidad');
+        
+        $nuevoStock=$productoStock-$cantidad;
+        DB::table('productos')->where('id',$productoId)->update([
+            'stock'=>$nuevoStock
+        ]);
+        notaCompra::destroy($id);
+        $total=DB::table('nota_compras')->where('compraId',$compraId)->sum('montoTotal');
+        DB::table('compras')->where('id',$compraId)->update([
+            'total'=>$total
+        ]);
+        DB::table('gastos')->where('compras',$compraId)->update([
+            'total'=>$total
+        ]);
+        
+        return redirect(route('notaCompras.show', $compraId));
+        
+
     }
 }

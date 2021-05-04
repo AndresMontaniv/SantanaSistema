@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SANTANA')
+@section('title', 'Santana')
 
 @section('content_header')
 @stop
@@ -9,30 +9,52 @@
 <div class="container " style="background-color: white">
     <div class="row justify-content-center border rounded-top">
         <div class="col">
-            {{-- datos --}}
-            <div class="row border"> 
-                <div class="col">
+            <div class="row row justify-content-center m-2">
+                <h2 class="font-weight-bold">NOTA VENTA</h2>
+            </div>
+            <div class="row">
+                <div class="col">   
                     <div class="row">
-                        <h3 class="font-weight-bold px-2">DATOS VENTA</h3>
+                        <h6 class="font-weight-bold px-2">Venta Registrado por: </h6>
+                        <h6>{{DB::table('users')->where('id',$venta->usuarioId)->value('name')}}</h6>
                     </div>
                     <div class="row">
-                        <h5 class="font-weight-bold px-2">FECHA: </h5>
-                        <h5>{{$venta->fecha}}</h5>
-                    </div>
-                    <div class="row">
-                        <h5 class="font-weight-bold px-2">USUARIO: </h5>
-                        <h5>{{$venta->usuarioId}}</h5>
-                    </div>
-                    <div class="row">
-                        <h5 class="font-weight-bold px-2">TOTAL: </h5>
-                        <h5>{{$venta->total}}</h5>
-                    </div>
-                    
-                    <div class="row">
-                        <a href="{{url('/ventas/')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>
+                        <h6 class="font-weight-bold px-2">Fecha de Registro: </h6>
+                        <h6>{{$venta->updated_at}}</h6>
                     </div>
                 </div>
             </div>
+            <div class="row row justify-content-center m-2">
+                <h3>DETALLE</h3>
+            </div>
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                          <th scope="col">Producto</th>
+                          <th scope="col">Cantidad</th>
+                          <th scope="col">Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($notas as $nota)
+                            <tr>
+                                <td>{{DB::table('productos')->where('id',$nota->productoId)->value('nombre')}}</td>
+                                <td>{{$nota->cantidad}}</td>
+                                <td>{{$nota->montoTotal}}</td>
+                            </tr>
+                        @endforeach
+                        <tr>
+                            <td colspan="2" class="font-weight-bold">Total</td>
+                            <td class="font-weight-bold">{{$venta->total}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row justify-content-start">
+                <a class="btn btn-warning btn-sm m-2" href="{{url('/ventas/')}}">Volver</a>
+            </div>    
+            
         </div>
     </div>       
 </div>

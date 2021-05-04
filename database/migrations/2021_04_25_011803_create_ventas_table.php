@@ -15,7 +15,6 @@ class CreateVentasTable extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->datetime('fecha');
             $table->unsignedBigInteger('usuarioId');
             $table->float('total')->nullable();
             $table->timestamps();

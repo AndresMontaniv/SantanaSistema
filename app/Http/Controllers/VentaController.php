@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venta;
+use App\Models\notaVenta;
+use App\Models\Ingreso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,11 +41,16 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        $dato=Venta::create([
-            'fecha'=> request('fecha'),
-            'usuarioId'=> request('usuarioId'),
+        date_default_timezone_set("America/La_Paz");
+        $venta=Venta::create([
+            'usuarioId'=> request('userId'),
         ]);
-        return redirect('ventas');
+        $ingreso=Ingreso::create([
+            'idVentas'=> $venta->id,
+            'descripcion'=> 'Venta de Productos',
+            'total'=> 0.0,
+        ]);
+        return redirect(route('notaVentas.show', $venta));
     }
 
     /**
@@ -55,7 +62,8 @@ class VentaController extends Controller
     public function show($id)
     {
         $venta=Venta::findOrFail($id);
-        return view('venta.show', compact('venta'));
+        $notas=DB::table('nota_ventas')->where('ventaId',$venta->id)->get();
+        return view('venta.show',compact('venta'),['notas'=>$notas]);
     }
 
     /**
@@ -67,7 +75,7 @@ class VentaController extends Controller
     public function edit($id)
     {
         $venta=Venta::findOrFail($id);
-        return view('venta.edit', compact('venta'));
+        return redirect(route('notaVentas.show', $venta));
     }
 
     /**
@@ -100,7 +108,14 @@ class VentaController extends Controller
      */
     public function destroy($id)
     {
+        $notas=DB::table('nota_ventas')->where('ventaId',$id)->get();
+        $ingreso=DB::table('ingresos')->where('idVentas',$id)->value('id');
+        foreach ($notas as $nota){
+            $notaId=$nota->id;
+            notaVenta::destroy($notaId);
+        }
         Venta::destroy($id);
+        Ingreso::destroy($ingreso);
         return redirect('ventas');
     }
 }

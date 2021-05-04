@@ -21,15 +21,7 @@
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">PRECIO: </h5>
-                        <h5>{{$gastoPersonal->costo}}</h5>
-                    </div>
-                    <div class="row">
-                        <h5 class="font-weight-bold px-2">CANTIDAD: </h5>
-                        <h5>{{$gastoPersonal->cantidad}}</h5>
-                    </div>
-                    <div class="row">
-                        <h5 class="font-weight-bold px-2">COSTO: </h5>
-                        <h5>{{$gastoPersonal->costo}}</h5>
+                        <h5>{{$gastoPersonal->precio}}</h5>
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">FECHA: </h5>

@@ -15,10 +15,11 @@ class CreateNotaVentasTable extends Migration
     {
         Schema::create('nota_ventas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('producto_id')->nullable();
+            $table->unsignedBigInteger('productoId')->nullable();
+            $table->unsignedBigInteger('ventaId');
             $table->integer('cantidad');
             $table->float('montoTotal');
-            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('set null')->onUpdate('cascade');
+            //$table->foreign('producto_id')->references('id')->on('productos')->onDelete('set null')->onUpdate('cascade');
 
 
             $table->timestamps();

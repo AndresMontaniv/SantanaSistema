@@ -17,8 +17,6 @@ class CreateGastoPersonalsTable extends Migration
             $table->id();
             $table->string('detalle');
             $table->float('precio');
-            $table->float('cantidad');
-            $table->float('costo');
             $table->timestamps();
         });
     }

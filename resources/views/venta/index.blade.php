@@ -10,10 +10,14 @@
 
 
 <div class="card">
-        <div class="card-header">
-            <a href="{{url('/ventas/create')}}"class="btn btn-primary btb-sm">Registrar Venta</a>
-        </div>
+  <div class="card-header">
+      <form method="post" action="{{url('/ventas')}}" novalidate >
+        @csrf
+        <input type="hidden"  name="userId" value="{{Auth::user()->id}}" class="focus border-primary  form-control" >
+        <button  class="btn btn-primary btb-sm" type="submit">Registrar Venta</button>
+    </form>
   </div>
+</div>
 <div class="card">
   <div class="card-body">
       <table class="table table-striped" id="ventas" >
@@ -21,6 +25,7 @@
         <thead>
 
           <tr>
+            <th scope="col">id</th>
             <th scope="col">Fecha</th>
             <th scope="col">Usuario</th>
             <th scope="col">Total</th>
@@ -31,8 +36,9 @@
           @foreach ($ventas as $venta)
 
             <tr>
-              <td>{{$venta->fecha}}</td>
-              <td>{{$venta->usuarioId}}</td>
+              <td>{{$venta->id}}</td>
+              <td>{{$venta->updated_at}}</td>
+              <td>{{DB::table('users')->where('id',$venta->usuarioId)->value('name')}}</td>
               <td>{{$venta->total}}</td>
               <td>
                 <form action="{{url('/ventas/'.$venta->id)}}" method="post">

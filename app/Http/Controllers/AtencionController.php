@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Atencion;
+use App\Models\Ingreso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -51,6 +52,11 @@ class AtencionController extends Controller
             'clienteId'=> request('clienteId'),
             'metodoId'=> request('metodoId'),
             'montoTotal'=> $montoTotal,
+        ]);
+        $ingreso=Ingreso::create([
+            'idPagos'=> $atencion->id,
+            'descripcion'=> 'Pago de Atencion',
+            'total'=> $montoTotal,
         ]);
         return redirect('atencions');
     }
@@ -104,6 +110,9 @@ class AtencionController extends Controller
             'montoTotal'=> $montoTotal
 
         ]);
+        DB::table('ingresos')->where('idPagos',$id)->update([
+            'total'=> $montoTotal
+        ]);
         return redirect('atencions');
     }
 
@@ -115,7 +124,9 @@ class AtencionController extends Controller
      */
     public function destroy($id)
     {
+        $ingreso=DB::table('ingresos')->where('idPagos',$id)->value('id');
         Atencion::destroy($id);
+        Ingreso::destroy($ingreso);
         return redirect('atencions');
     }
 }
