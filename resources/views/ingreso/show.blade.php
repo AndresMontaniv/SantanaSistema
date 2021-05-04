@@ -16,16 +16,16 @@
                         <h3 class="font-weight-bold px-2">DETALLES DE INGRESO</h3>
                     </div>
                     <div class="row">
-                        <h5 class="font-weight-bold px-2">Identificación: </h5>
-                        <h5>{{$ingreso->id}}</h5>
+                        <h5 class="font-weight-bold px-2">Descripcion: </h5>
+                        <h5>{{$ingreso->descripcion}}</h5>
                     </div>
                     <div class="row">
-                        <h5 class="font-weight-bold px-2">Id Venta: </h5>
-                        <h5>{{$ingreso-> idVentas}}</h5>
+                        <h5 class="font-weight-bold px-2">Fecha:</h5>
+                        <h5>{{$ingreso->updated_at}}</h5>
                     </div>
                     <div class="row">
-                        <h5 class="font-weight-bold px-2">Id Pago : </h5>
-                        <h5>{{$ingreso-> idPagos}}</h5>
+                        <h5 class="font-weight-bold px-2">Total:</h5>
+                        <h5>{{$ingreso->total}}</h5>
                     </div>
                     <div class="row">
                         <a href="{{url('/ingresos/')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>

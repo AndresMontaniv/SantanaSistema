@@ -294,9 +294,9 @@ return [
                 ],
             ],
         ],
-            [
-                 'text'    => 'ADM ATENCIONES',
-                 'icon'    => 'fas fa-cut',
+        [
+            'text'    => 'ADM ATENCIONES',
+            'icon'    => 'fas fa-cut',
                  'submenu' => [
                 [
                     'text' => 'Atenciones',
@@ -314,26 +314,46 @@ return [
             'text'    => 'ADM GASTOS',
             'icon'    => 'fas fa-cut',
             'submenu' => [
-         
-           [
-               'text' => 'Gastos Personales',
-               'url'  => 'gastoPersonals',
-               'icon' => 'fas fa-fw fa-user',
-           ],
-           [
-               'text' => 'Pagos SB',
-               'url'  => 'pagoServicioBasicos',
-               'icon' => 'fas fa-fw fa-user',
-           ],
-           [
-            'text' => 'Servicios Basicos',
-            'url'  => 'servicioBasicos',
-            'icon' => 'fas fa-fw fa-user',
+                [
+                    'text' => 'Gastos Personales',
+                    'url'  => 'gastoPersonals',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Pagos SB',
+                    'url'  => 'pagoServicioBasicos',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'Servicios Basicos',
+                    'url'  => 'servicioBasicos',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+            ],
         ],
-       ],
-   ],
+        [
+            'text'    => 'ADM PERSONAL',
+            'icon'    => 'fas fa-user-shield',
+            'submenu' => [
+                [
+                    'text' => 'Usuarios',
+                    'icon' => 'fas fa-user-cog',
+                    'url'  => 'users',
+                    'can' => 'ver lista de usuarios',
+                ],
+                [
+                    'text' => 'Roles',
+                    'icon' => 'fas fa-user-lock',
+                    'url'  => 'roles',
+                ],
+                /* [
+                    'text' => 'Permisos',
+                    'icon' => 'fas fa-user-plus',
+                    'url'  => '#',
+                ], */
+            ],
+        ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Menu Filters

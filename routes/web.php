@@ -17,6 +17,10 @@ use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\AtencionController;
 
 use App\Http\Controllers\GastoPersonalController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+
+
 use App\Http\Controllers\ServicioBasicoController;
 use App\Http\Controllers\PagoServicioBasicoController;
 
@@ -55,5 +59,8 @@ Route::resource('servicios', ServicioController::class);
 Route::resource('atencions', AtencionController::class);
 
 Route::resource('gastoPersonals', GastoPersonalController::class);
+
+Route::resource('users', UserController::class)->names('users');
+Route::resource('roles', RoleController::class)->names('roles');
 Route::resource('servicioBasicos', ServicioBasicoController::class);
 Route::resource('pagoServicioBasicos', PagoServicioBasicoController::class);
