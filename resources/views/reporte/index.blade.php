@@ -19,15 +19,17 @@
             <a href="{{url('/reportes/create')}}"class="btn btn-primary btb-sm">Registrar Reportes Mensuales</a>
         </div>
   </div>
+  
 <div class="card">
   <div class="card-body">
+    
       <table class="table table-striped" id="reportes" >
 
         <thead>
 
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Fecha</th>
+            <th scope="col">Mes</th>
             <th scope="col">Total Gastos</th>
             <th scope="col">Total Ingresos </th>
             <th scope="col">General </th>
@@ -35,13 +37,16 @@
         </thead>
         <tbody>
           @foreach ($reportes as $reporte)
-
+          <?php
+            $date=date_create($reporte->created_at);
+            $fecha=date_format($date,"Y");
+          ?>
             <tr>
-              <td>{{ $reporte-> id }}</td>
-              <td>{{ $reporte-> created_at}}</td>
-              <td>{{ $reporte-> totalGastos }}</td>
-              <td>{{ $reporte-> totalIngresos }}</td> 
-              <td>{{ $reporte-> general }}</td> 
+              <td>{{ $reporte->id }}</td>
+              <td>{{ $fecha}}</td>
+              <td>{{ $reporte->totalGastos }}</td>
+              <td>{{ $reporte->totalIngresos }}</td> 
+              <td>{{ $reporte->general }}</td> 
               <td>
                 <form action="{{url('/reportes/'.$reporte->id)}}" method="post">
                   @csrf
@@ -49,7 +54,7 @@
 
                   <a class="btn btn-primary btn-sm" href="{{route('reportes.show', $reporte)}}">Ver</a>
                     
-                  <a href="{{url('/reportes/'.$reporte->id.'/edit')}}"class="btn btn-info btn-sm">Editar</a>
+                  <a href="{{url('/reportes/'.$reporte->id.'/edit')}}"class="btn btn-info btn-sm">Actualizar</a>
                   
                   <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                   value="Borrar">Eliminar</button> 

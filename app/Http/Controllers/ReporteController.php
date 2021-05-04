@@ -37,10 +37,17 @@ class ReporteController extends Controller
      */
     public function store(Request $request)
     {
-        $reporte=Reporte::create([
-            'totalGastos'=> request('totalGastos'),
-            'totalIngresos'=> request('totalIngresos'),
-        ]);
+        date_default_timezone_set("America/La_Paz");
+        $nombre=date('m Y');
+        $mes=date('m');
+        $anno=date('Y');
+        $rep=DB::table('reportes')->where('nombre',$nombre)->get();
+        if ($rep===null){
+            $reporte=Reporte::create([
+                'totalGastos'=> request('totalGastos'),
+                'totalIngresos'=> request('totalIngresos'),
+            ]);
+        }
         return redirect('reportes');
     }
 

@@ -15,17 +15,12 @@ class CreateReportesTable extends Migration
     {
         Schema::create('reportes', function (Blueprint $table) {
             $table->id();
-/*             $table->unsignedBigInteger('idGastos');
-            $table->unsignedBigInteger('idIngresos'); */
+            $table->string('nombre');
             $table->float('totalGastos');
             $table->float('totalIngresos');
             $table->float('general');
-            
             $table->timestamps();
-
-            /* $table->foreign('idGastos')->references('id')->on('gastos')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idIngresos')->references('id')->on('pagos')->onDelete('cascade')->onUpdate('cascade');
-         */
+         
         });
     }
 
