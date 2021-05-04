@@ -50,8 +50,11 @@ class NotaCompraController extends Controller
         ]);
         $total=DB::table('nota_compras')->where('compraId',$compraId)->sum('montoTotal');
         DB::table('compras')->where('id',$compraId)->update([
-            'total'=>$total]);
-
+            'total'=>$total
+        ]);
+        DB::table('gastos')->where('compras',$compraId)->update([
+            'total'=>$total
+        ]);
         $productoStock=DB::table('productos')->where('id',$productoId)->value('stock');
         $cant=request('cantidad');
         $nuevoStock=$productoStock+$cant;
@@ -107,16 +110,25 @@ class NotaCompraController extends Controller
     public function destroy($id)
     {
         $compraId=DB::table('nota_compras')->where('id',$id)->value('compraId');
-        notaCompra::destroy($id);
-        return redirect(route('notaCompras.show', $compraId));
         $productoId=DB::table('nota_compras')->where('id',$id)->value('productoId');
         $productoStock=DB::table('productos')->where('id',$productoId)->value('stock');
-        $cantidad=DB::table('nota_compra')->where('id',$id)->value('cantidad');
+        $cantidad=DB::table('nota_compras')->where('id',$id)->value('cantidad');
         
-        $nuevoStock=$productoStock-$cant;
+        $nuevoStock=$productoStock-$cantidad;
         DB::table('productos')->where('id',$productoId)->update([
             'stock'=>$nuevoStock
         ]);
+        notaCompra::destroy($id);
+        $total=DB::table('nota_compras')->where('compraId',$compraId)->sum('montoTotal');
+        DB::table('compras')->where('id',$compraId)->update([
+            'total'=>$total
+        ]);
+        DB::table('gastos')->where('compras',$compraId)->update([
+            'total'=>$total
+        ]);
+        
+        return redirect(route('notaCompras.show', $compraId));
+        
 
     }
 }

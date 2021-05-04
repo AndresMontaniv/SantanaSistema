@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\pagoServicioBasico;
+use App\Models\Gasto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PagoServicioBasicoController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -43,10 +44,15 @@ class PagoServicioBasicoController extends Controller
             'servicioBasico_id'=> request('servicioBasicoId'),
             'monto'=> request('monto'),
         ]);
+        $gasto=Gasto::create([
+            'sb'=> $pagoServicioBasicos->id,
+            'descripcion'=> 'Pago de Servicio Basico',
+            'total'=> request('monto'),
+        ]);
         return redirect()->route('pagoServicioBasicos.index');
     }
 
-    /**
+    /**  
      * Display the specified resource.
      *
      * @param  \App\Models\pagoServicioBasico  $pagoServicioBasico
@@ -83,6 +89,9 @@ class PagoServicioBasicoController extends Controller
         $pagoServicioBasico->servicioBasico_id=$request->servicioBasicoId;
         $pagoServicioBasico->monto=$request->monto;
         $pagoServicioBasico->save();
+        DB::table('gastos')->where('sb',$pagoServicioBasico->id)->update([
+            'total'=> $request->monto
+        ]);
         return redirect()->route('pagoServicioBasicos.index');
     }
 
@@ -94,7 +103,9 @@ class PagoServicioBasicoController extends Controller
      */
     public function destroy(pagoServicioBasico $pagoServicioBasico)
     {
+        $gasto=DB::table('gastos')->where('sb',$pagoServicioBasico->id)->value('id');
         $pagoServicioBasico->delete();
+        Gasto::destroy($gasto);
         return redirect()->route('pagoServicioBasicos.index');
     }
 }

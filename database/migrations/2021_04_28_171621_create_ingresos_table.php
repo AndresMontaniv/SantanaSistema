@@ -15,8 +15,10 @@ class CreateIngresosTable extends Migration
     {
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
+            $table->string('descripcion')->nullable();
             $table->unsignedBigInteger('idVentas')->nullable();
             $table->unsignedBigInteger('idPagos')->nullable();
+            $table->float('total');
             $table->timestamps();
 
             /* $table->foreign('idVentas')->references('id')->on('ventas')->onDelete('cascade')->onUpdate('cascade');

@@ -37,7 +37,7 @@
 
             <tr>
               <td>{{$compra->id}}</td>
-              <td>{{$compra->created_at}}</td>
+              <td>{{$compra->updated_at}}</td>
               <td>{{DB::table('users')->where('id',$compra->usuarioId)->value('name')}}</td>
               <td>{{$compra->total}}</td>
               <td>

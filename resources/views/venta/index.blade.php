@@ -25,6 +25,7 @@
         <thead>
 
           <tr>
+            <th scope="col">id</th>
             <th scope="col">Fecha</th>
             <th scope="col">Usuario</th>
             <th scope="col">Total</th>
@@ -35,8 +36,9 @@
           @foreach ($ventas as $venta)
 
             <tr>
-              <td>{{$venta->fecha}}</td>
-              <td>{{$venta->usuarioId}}</td>
+              <td>{{$venta->id}}</td>
+              <td>{{$venta->updated_at}}</td>
+              <td>{{DB::table('users')->where('id',$venta->usuarioId)->value('name')}}</td>
               <td>{{$venta->total}}</td>
               <td>
                 <form action="{{url('/ventas/'.$venta->id)}}" method="post">

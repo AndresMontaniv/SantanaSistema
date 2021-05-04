@@ -54,8 +54,9 @@ class AtencionController extends Controller
             'montoTotal'=> $montoTotal,
         ]);
         $ingreso=Ingreso::create([
-            'idVentas'=> null,
             'idPagos'=> $atencion->id,
+            'descripcion'=> 'Pago de Atencion',
+            'total'=> $montoTotal,
         ]);
         return redirect('atencions');
     }
@@ -109,6 +110,9 @@ class AtencionController extends Controller
             'montoTotal'=> $montoTotal
 
         ]);
+        DB::table('ingresos')->where('idPagos',$id)->update([
+            'total'=> $montoTotal
+        ]);
         return redirect('atencions');
     }
 
@@ -120,7 +124,9 @@ class AtencionController extends Controller
      */
     public function destroy($id)
     {
+        $ingreso=DB::table('ingresos')->where('idPagos',$id)->value('id');
         Atencion::destroy($id);
+        Ingreso::destroy($ingreso);
         return redirect('atencions');
     }
 }

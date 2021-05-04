@@ -27,6 +27,7 @@
 
           <tr>
             <th scope="col">Id</th>
+            <th scope="col">Descripcion</th>
             <th scope="col">Gastos Personales</th>
             <th scope="col">Compras</th>
             <th scope="col">Servicios Básicos</th>
@@ -38,6 +39,7 @@
 
             <tr>
               <td>{{ $gasto-> id }}</td>
+              <td>{{ $gasto-> descripcion }}</td>
               <td>{{ $gasto-> gastosPersonales }}</td>
               <td>{{ $gasto-> compras }}</td> 
               <td>{{ $gasto-> sb }}</td> 

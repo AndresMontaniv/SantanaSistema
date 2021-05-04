@@ -19,11 +19,6 @@
             @error('nombre')
                 <p>DEBE INGRESAR BIEN SU NOMBRE</p>
             @enderror
-            <h5>Monto(fijo):</h5>
-            <input type="number"  name="monto" value="{{$servicioBasico->monto}}" class="focus border-primary  form-control" >
-            @error('monto')
-                <p>DEBE INGRESAR BIEN EL MONTO</p>
-            @enderror
             <br>
             <br>
             <button  class="btn btn-danger btn-sm" type="submit">Guardar</button>

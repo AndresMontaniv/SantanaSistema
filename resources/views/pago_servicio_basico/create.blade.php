@@ -15,7 +15,7 @@
 
             <h5>Servicio Basico:</h5>
             <select name="servicioBasicoId" id="select-servicio" class="form-control" onchange="habilitar()" >
-                <option value="nulo">Seleccionar</option>
+                <option value="nulo">Seleccionar Servicio</option>
                     @foreach ($servicioBasicos as $servicioBasico)
                         <option value="{{$servicioBasico->id}}">
                             {{$servicioBasico->nombre}}
@@ -25,9 +25,8 @@
             @error('servicioBasicoId')
             <p>DEBE INGRESAR BIEN EL NOMBRE DEL SERVICIO</p>
             @enderror
-
             <h5>Monto:</h5>
-            <input type="number"  name="monto" value="{{$servicioBasico->monto}}" class="focus border-primary  form-control" >
+            <input type="text"  name="monto" class="focus border-primary  form-control" >
             @error('monto')
             <p>DEBE INGRESAR BIEN EL NOMBRE EL MONTO</p>
             @enderror

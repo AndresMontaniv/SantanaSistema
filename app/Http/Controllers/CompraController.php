@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compra;
+use App\Models\Gasto;
 use App\Models\notaCompra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -44,6 +45,11 @@ class CompraController extends Controller
         date_default_timezone_set("America/La_Paz");
         $compra=Compra::create([
             'usuarioId'=> request('userId'),
+        ]);
+        $gasto=Gasto::create([
+            'compras'=> $compra->id,
+            'descripcion'=> 'Compra de Productos',
+            'total'=> 0.0,
         ]);
         return redirect(route('notaCompras.show', $compra));
     }
@@ -104,11 +110,13 @@ class CompraController extends Controller
     public function destroy($id)
     {
         $notas=DB::table('nota_compras')->where('compraId',$id)->get();
+        $gasto=DB::table('gastos')->where('compras',$id)->value('id');
         foreach ($notas as $nota){
             $notaId=$nota->id;
             notaCompra::destroy($notaId);
         }
         Compra::destroy($id);
+        Gasto::destroy($gasto);
         return redirect('compras');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\notaVenta;
 use App\Models\Venta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
 
@@ -40,7 +41,7 @@ class NotaVentaController extends Controller
     public function store(Request $request)
     {
         $dato=request()->validate([
-            'cantidad'=> ['required'],
+            'cantidad'=> ['required', 'min:1','max:10'],
             ]);
         $productoId=request('productoId');
         $ventaId=request('ventaId');
@@ -55,7 +56,9 @@ class NotaVentaController extends Controller
         $total=DB::table('nota_ventas')->where('ventaId',$ventaId)->sum('montoTotal');
         DB::table('ventas')->where('id',$ventaId)->update([
             'total'=>$total]);
-
+        DB::table('ingresos')->where('idVentas',$ventaId)->update([
+            'total'=>$total
+        ]);
         $productoStock=DB::table('productos')->where('id',$productoId)->value('stock');
         $cant=request('cantidad');
         $nuevoStock=$productoStock-$cant;
@@ -113,15 +116,22 @@ class NotaVentaController extends Controller
     public function destroy($id)
     {
         $ventaId=DB::table('nota_ventas')->where('id',$id)->value('ventaId');
-        notaVenta::destroy($id);
-        return redirect(route('notaVentas.show', $ventaId));
         $productoId=DB::table('nota_ventas')->where('id',$id)->value('productoId');
         $productoStock=DB::table('productos')->where('id',$productoId)->value('stock');
-        $cantidad=DB::table('nota_venta')->where('id',$id)->value('cantidad');
+        $cantidad=DB::table('nota_ventas')->where('id',$id)->value('cantidad');
         
-        $nuevoStock=$productoStock-$cant;
+        $nuevoStock=$productoStock-$cantidad;
         DB::table('productos')->where('id',$productoId)->update([
             'stock'=>$nuevoStock
         ]);
+        notaVenta::destroy($id);
+        $total=DB::table('nota_ventas')->where('ventaId',$ventaId)->sum('montoTotal');
+        DB::table('ventas')->where('id',$ventaId)->update([
+            'total'=>$total]);
+        DB::table('ingresos')->where('idVentas',$ventaId)->update([
+            'total'=>$total
+        ]);
+        return redirect(route('notaVentas.show', $ventaId));
+        
     }
 }

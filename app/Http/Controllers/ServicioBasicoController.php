@@ -39,7 +39,6 @@ class ServicioBasicoController extends Controller
         date_default_timezone_set("America/La_Paz");
         $servicioBasicos=servicioBasico::create([
             'nombre'=> request('nombre'),
-            'monto'=> request('monto'),
         ]);
         return redirect()->route('servicioBasicos.index');
     }
@@ -77,7 +76,6 @@ class ServicioBasicoController extends Controller
     {   
         date_default_timezone_set("America/La_Paz");
         $servicioBasico->nombre=$request->nombre;
-        $servicioBasico->monto=$request->monto;
         $servicioBasico->save();
         return redirect()->route('servicioBasicos.index');
     }
