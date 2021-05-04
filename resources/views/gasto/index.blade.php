@@ -28,9 +28,6 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Descripcion</th>
-            <th scope="col">Gastos Personales</th>
-            <th scope="col">Compras</th>
-            <th scope="col">Servicios Básicos</th>
             <th scope="col">Total</th>
           </tr>
         </thead>
@@ -40,9 +37,6 @@
             <tr>
               <td>{{ $gasto-> id }}</td>
               <td>{{ $gasto-> descripcion }}</td>
-              <td>{{ $gasto-> gastosPersonales }}</td>
-              <td>{{ $gasto-> compras }}</td> 
-              <td>{{ $gasto-> sb }}</td> 
               <td>{{ $gasto-> total }}</td> 
               <td>
                 <form action="{{url('/gastos/'.$gasto->id)}}" method="post">

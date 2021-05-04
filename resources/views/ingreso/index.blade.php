@@ -28,8 +28,6 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Descripcion</th>
-            <th scope="col">Id Ventas</th>
-            <th scope="col">Id Pagos </th>
             <th scope="col">Total</th>
           </tr>
         </thead>
@@ -39,8 +37,6 @@
             <tr>
               <td>{{ $ingreso-> id }}</td>
               <td>{{ $ingreso->descripcion }}</td>
-              <td>{{ $ingreso-> 	idVentas }}</td>
-              <td>{{ $ingreso-> idPagos }}</td> 
               <td>{{ $ingreso-> total}}</td> 
               <td>
                 <form action="{{url('/ingresos/'.$ingreso->id)}}" method="post">
