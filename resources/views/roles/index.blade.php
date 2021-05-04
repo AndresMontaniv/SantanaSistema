@@ -3,52 +3,51 @@
 @section('title', 'Santana')
 
 @section('content_header')
-    <h1>Usuarios</h1>
+    <h1>Roles</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{route('users.create')}}" class="btn btn-primary btb-sm">Crear Usuario</a>
+            <a href="{{route('roles.create')}}" class="btn btn-secondary btb-sm">Crear Rol</a>
         </div>
     </div>
-
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped" id="usuarios" style="width:100%">
+            <table class="table table-striped" id="roles" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Nombre de usuario</th>
-                        <th scope="col">Rol</th>
+                        <th scope="col">Nombre de Rol</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-
+    
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($roles as $rol)
                         <tr>
-                            <td>{{$user->id}}</td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->getRoleNames()[0]}}</td>
-                            <td>
-                                <form action="{{route('users.destroy', $user)}}" method="post">
+                            <td>{{$rol->id}}</td>
+                            <td>{{$rol->name}}</td>                            
+                            <td >
+                                <form action="{{url('/roles/'.$rol->id)}}" method="post">
                                     @csrf
                                     @method('delete')
-                                    @can('editar usuario')
-                                        <a href="{{route('users.edit', $user)}}" class="btn btn-info btn-sm">Editar<a>
+                                    <a href="{{route('roles.edit', $rol)}}" class="btn btn-info btn-sm">Editar</a>
+                                    @can('Editar rol')
                                     @endcan
-                                    @can('eliminar usuario')
-                                        <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar">Eliminar</button> 
+                                    <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar">Eliminar</button>                                    
+                                    @can('Eliminar rol')
                                     @endcan
                                 </form>
                             </td>
+                            
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+    
 @stop
 
 @section('css')
@@ -62,7 +61,7 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-        $('#usuarios').DataTable();
+         $('#roles').DataTable();
         } );
     </script> 
 @stop

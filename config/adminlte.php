@@ -317,12 +317,13 @@ return [
                 [
                     'text' => 'Usuarios',
                     'icon' => 'fas fa-user-cog',
-                    'url'  => '',
+                    'url'  => 'users',
+                    'can' => 'ver lista de usuarios',
                 ],
                 [
                     'text' => 'Roles',
                     'icon' => 'fas fa-user-lock',
-                    'url'  => '#',
+                    'url'  => 'roles',
                 ],
                 /* [
                     'text' => 'Permisos',
