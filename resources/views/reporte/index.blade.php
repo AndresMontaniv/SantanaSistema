@@ -14,10 +14,14 @@
         </div>
     @endif
 
-<div class="card">
-        <div class="card-header">
-            <a href="{{url('/reportes/create')}}"class="btn btn-primary btb-sm">Registrar Reportes Mensuales</a>
-        </div>
+  <div class="card">
+    <div class="card-header">
+      <form method="post" action="{{url('/reportes')}}" novalidate >
+        @csrf
+        <button  class="btn btn-primary btb-sm" 
+        type="submit">Crear Reporte</button>
+      </form>
+    </div>
   </div>
   
 <div class="card">
@@ -37,13 +41,9 @@
         </thead>
         <tbody>
           @foreach ($reportes as $reporte)
-          <?php
-            $date=date_create($reporte->created_at);
-            $fecha=date_format($date,"Y");
-          ?>
             <tr>
               <td>{{ $reporte->id }}</td>
-              <td>{{ $fecha}}</td>
+              <td>{{ $reporte->nombre}}</td>
               <td>{{ $reporte->totalGastos }}</td>
               <td>{{ $reporte->totalIngresos }}</td> 
               <td>{{ $reporte->general }}</td> 
@@ -53,7 +53,7 @@
                   @method('delete')
 
                   <a class="btn btn-primary btn-sm" href="{{route('reportes.show', $reporte)}}">Ver</a>
-                    
+                  
                   <a href="{{url('/reportes/'.$reporte->id.'/edit')}}"class="btn btn-info btn-sm">Actualizar</a>
                   
                   <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 

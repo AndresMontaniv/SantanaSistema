@@ -79,6 +79,11 @@ class DatabaseSeeder extends Seeder
         $empleado2->telefono = '987654321';
         $empleado2->save();
 
+        $cliente3 = new Cliente();
+        $cliente3->nombre = 'Cliente No Registrado';
+        $cliente3->sexo = 'U';
+        $cliente3->save();
+        
         $cliente1 = new Cliente();
         $cliente1->nombre = 'Cliente Numero Uno';
         $cliente1->sexo = 'M';
@@ -95,10 +100,7 @@ class DatabaseSeeder extends Seeder
         $cliente2->email = 'santana2@gmail.com';
         $cliente2->save();
 
-        $cliente3 = new Cliente();
-        $cliente3->nombre = 'Cliente No Registrado';
-        $cliente3->sexo = 'U';
-        $cliente3->save();
+        
 
         $servicio1 = new Servicio();
         $servicio1->nombre = 'Corte';

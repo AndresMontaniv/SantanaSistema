@@ -57,6 +57,19 @@
                 <p>DEBE INGRESAR BIEN SU TELEFONO</p>
             @enderror
             
+            <h5>Usuario:</h5>
+            <select name="user_id" id="select-user" class="form-control border-primary" onchange="habilitar()" >
+                <option value="{{$empleado->user_id}}">
+                    {{DB::table('users')->where('id', $empleado->user_id)->value('name') }}
+                </option>
+                    @foreach ($users as $user)
+                        @if($empleado->user_id!=$user->id)
+                        <option value="{{$user->id}}">
+                            {{$user->name}}
+                        </option>
+                        @endif
+                    @endforeach
+            </select>
             <br>
             <br>
 

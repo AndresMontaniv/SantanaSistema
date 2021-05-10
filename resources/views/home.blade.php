@@ -3,11 +3,24 @@
 @section('title', 'Santana')
 
 @section('content_header')
-    <h1>Anuncios</h1>
+    <h1>Bienvenido {{Auth::user()->name}}</h1>
+    <?php
+    $date=date("d-m-Y");
+    ?>
+    <br>
+    <h6>{{$date}}</h6>
 @stop
 
 @section('content')
-    <p>Peluqueria Santana en construccion</p>
+<div class="container ">
+    <div class="row ">
+        <div class="col">
+            <div class="row">
+                <h5>Accesos Directos:</h5>
+            </div>
+        </div>
+    </div>       
+</div>
 @stop
 
 @section('css')

@@ -55,6 +55,16 @@
             @error('telefono')
                 <p>DEBE INGRESAR BIEN SU TELEFONO</p>
             @enderror
+
+            <h5>Usuario:</h5>
+            <select name="user_id" id="select-user" class="form-control border-primary" onchange="habilitar()" >
+                <option value="nulo">Seleccione un Usuario</option>
+                    @foreach ($users as $user)
+                        <option value="{{$user->id}}">
+                            {{$user->name}}
+                        </option>
+                    @endforeach
+            </select>
             
             <br>
             <br>

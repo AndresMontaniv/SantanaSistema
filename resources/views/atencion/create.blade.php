@@ -27,14 +27,26 @@
             <p>DEBE INGRESAR BIEN EL NOMBRE DEL SERVICIO</p>
             @enderror
 
-
+            <?php
+            $userId=Auth::user()->id;
+            $employeeName=DB::table('empleados')->where('user_id',$userId)->value('nombre');
+            $employeeId=DB::table('empleados')->where('user_id',$userId)->value('id');
+            ?>
             <h5>Empleado:</h5>
             <select name="empleadoId" id="select-empleado" class="form-control" onchange="habilitar()" >
+                @if ($employeeId!=null)
+                <option value="{{$employeeId}}">{{$employeeName}}</option>  
+                @else
+
                 <option value="nulo">Seleccione un Empleado</option>
+                @endif
                     @foreach ($empleados as $empleado)
+                        @if ($empleado->id!=$employeeId)
+                            
                         <option value="{{$empleado->id}}">
                             {{$empleado->nombre}}
                         </option>
+                        @endif
                     @endforeach
             </select>
 
@@ -44,7 +56,7 @@
 
             <h5>Cliente:</h5>
             <select name="clienteId" id="select-cliente" class="form-control" onchange="habilitar()" >
-                <option value="nulo">Seleccione un Cliente</option>
+                {{-- <option value="nulo">Seleccione un Cliente</option> --}}
                     @foreach ($clientes as $cliente)
                         <option value="{{$cliente->id}}">
                             {{$cliente->nombre}}
@@ -57,7 +69,7 @@
             
             <h5>Metodo de Pago:</h5>
             <select name="metodoId" id="select-metodo" class="form-control" onchange="habilitar()" >
-                <option value="nulo">Seleccione un Metodo de Pago</option>
+                {{-- <option value="nulo">Seleccione un Metodo de Pago</option> --}}
                     @foreach ($metodos as $metodo)
                         <option value="{{$metodo->id}}">
                             {{$metodo->nombre}}

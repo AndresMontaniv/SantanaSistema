@@ -39,13 +39,34 @@ class ReporteController extends Controller
     {
         date_default_timezone_set("America/La_Paz");
         $nombre=date('m Y');
-        $mes=date('m');
-        $anno=date('Y');
-        $rep=DB::table('reportes')->where('nombre',$nombre)->get();
-        if ($rep===null){
+        $rep=DB::table('reportes')->where('nombre',$nombre)->exists();
+        if (!$rep){
+            $gastos=DB::table('gastos')->get();
+            $ingresos=DB::table('ingresos')->get();
+            $totalGastos=0;
+            $totalIngresos=0;
+            foreach ($gastos as $gasto){
+                $date=date_create($gasto->updated_at);
+                $fecha=date_format($date,"m Y");
+                if ($fecha===$nombre){
+                    $montoGasto=$gasto->total;
+                    $totalGastos+=$montoGasto;
+                }
+            }
+            foreach ($ingresos as $ingreso){
+                $date=date_create($ingreso->updated_at);
+                $fecha=date_format($date,"m Y");
+                if ($fecha===$nombre){
+                    $montoIngreso=$ingreso->total;
+                    $totalIngresos+=$montoIngreso;
+                }
+            }
+            $general=$totalIngresos-$totalGastos;
             $reporte=Reporte::create([
-                'totalGastos'=> request('totalGastos'),
-                'totalIngresos'=> request('totalIngresos'),
+                'nombre'=> $nombre,
+                'totalGastos'=> $totalGastos,
+                'totalIngresos'=> $totalIngresos,
+                'general'=> $general,
             ]);
         }
         return redirect('reportes');
@@ -71,8 +92,36 @@ class ReporteController extends Controller
      */
     public function edit($id)
     {
+        $nombre=DB::table('reportes')->where('id',$id)->value('nombre');
+        $gastos=DB::table('gastos')->get();
+        $ingresos=DB::table('ingresos')->get();
+        $totalGastos=0;
+        $totalIngresos=0;
+        foreach ($gastos as $gasto){
+            $date=date_create($gasto->updated_at);
+            $fecha=date_format($date,"m Y");
+            if ($fecha===$nombre){
+                $montoGasto=$gasto->total;
+                $totalGastos+=$montoGasto;
+            }
+        }
+        foreach ($ingresos as $ingreso){
+            $date=date_create($ingreso->updated_at);
+            $fecha=date_format($date,"m Y");
+            if ($fecha===$nombre){
+                $montoIngreso=$ingreso->total;
+                $totalIngresos+=$montoIngreso;
+            }
+        }
+        $general=$totalIngresos-$totalGastos;
         $reporte=Reporte::findOrFail($id);
-        return view('reporte.edit',compact('reporte'));
+        DB::table('reportes')->where('id',$id)->update([
+            'totalGastos'=> $totalGastos,
+            'totalIngresos'=> $totalIngresos,
+            'general'=> $general
+        ]);
+    
+    return redirect('reportes');
     }
 
     /**

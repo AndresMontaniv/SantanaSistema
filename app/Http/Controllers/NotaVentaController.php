@@ -47,26 +47,30 @@ class NotaVentaController extends Controller
         $ventaId=request('ventaId');
         $cant=request('cantidad');
         $monto=DB::table('productos')->where('id',$productoId)->value('precioDeVenta');
-        $notaVenta=notaVenta::create([
-            'ventaId'=> request('ventaId'),
-            'productoId'=> request('productoId'),
-            'cantidad'=> request('cantidad'),
-            'montoTotal'=> $monto*$cant,
-        ]);
-        $total=DB::table('nota_ventas')->where('ventaId',$ventaId)->sum('montoTotal');
-        DB::table('ventas')->where('id',$ventaId)->update([
-            'total'=>$total]);
-        DB::table('ingresos')->where('idVentas',$ventaId)->update([
-            'total'=>$total
-        ]);
         $productoStock=DB::table('productos')->where('id',$productoId)->value('stock');
-        $cant=request('cantidad');
-        $nuevoStock=$productoStock-$cant;
-        DB::table('productos')->where('id',$productoId)->update([
-            'stock'=>$nuevoStock
-            
 
-        ]);
+        if($cant<=$productoStock){
+            $notaVenta=notaVenta::create([
+                'ventaId'=> request('ventaId'),
+                'productoId'=> request('productoId'),
+                'cantidad'=> request('cantidad'),
+                'montoTotal'=> $monto*$cant,
+            ]);
+            $total=DB::table('nota_ventas')->where('ventaId',$ventaId)->sum('montoTotal');
+            DB::table('ventas')->where('id',$ventaId)->update([
+                'total'=>$total]);
+            DB::table('ingresos')->where('idVentas',$ventaId)->update([
+                'total'=>$total
+            ]);
+            
+            $cant=request('cantidad');
+            $nuevoStock=$productoStock-$cant;
+            DB::table('productos')->where('id',$productoId)->update([
+                'stock'=>$nuevoStock
+                
+
+            ]);
+        }
         return redirect(route('notaVentas.show', $ventaId));
     }
 
@@ -120,7 +124,7 @@ class NotaVentaController extends Controller
         $productoStock=DB::table('productos')->where('id',$productoId)->value('stock');
         $cantidad=DB::table('nota_ventas')->where('id',$id)->value('cantidad');
         
-        $nuevoStock=$productoStock-$cantidad;
+        $nuevoStock=$productoStock+$cantidad;
         DB::table('productos')->where('id',$productoId)->update([
             'stock'=>$nuevoStock
         ]);

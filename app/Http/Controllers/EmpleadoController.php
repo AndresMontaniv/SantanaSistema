@@ -13,6 +13,10 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $empleados=Empleado::all();
@@ -25,8 +29,10 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
     {
-        return view('empleado.create');
+        $users=DB::table('users')->get();
+        return view('empleado.create',['users'=>$users]);
     }
 
     /**
@@ -43,6 +49,7 @@ class EmpleadoController extends Controller
             'fechaNac'=> request('fechaNac'),
             'sexo'=> request('sexo'),
             'telefono'=> request('telefono'),
+            'user_id'=> request('user_id'),
         ]);
         return redirect('empleados');
     }
@@ -56,7 +63,8 @@ class EmpleadoController extends Controller
     public function show($id)
     {
         $empleado=Empleado::findOrFail($id);
-        return view('empleado.show',compact('empleado'));
+        $users=DB::table('users')->get();
+        return view('empleado.show',compact('empleado'),['users'=>$users]);
     }
 
     /**
@@ -68,7 +76,8 @@ class EmpleadoController extends Controller
     public function edit($id)
     {
         $empleado=Empleado::findOrFail($id);
-        return view('empleado.edit',compact('empleado'));
+        $users=DB::table('users')->get();
+        return view('empleado.edit',compact('empleado'),['users'=>$users]);
     }
 
     /**
@@ -85,7 +94,8 @@ class EmpleadoController extends Controller
             'nombre'=> request('nombre'),
             'fechaNac'=> request('fechaNac'),
             'sexo'=> request('sexo'),
-            'telefono'=> request('telefono')
+            'telefono'=> request('telefono'),
+            'user_id'=> request('user_id')
 
         ]);
         return redirect('empleados');
