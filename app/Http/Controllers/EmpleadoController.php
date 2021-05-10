@@ -43,6 +43,7 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $empleado=Empleado::create([
             'ci'=> request('ci'),
             'nombre'=> request('nombre'),
@@ -89,6 +90,7 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        date_default_timezone_set("America/La_Paz");
         DB::table('empleados')->where('id',$id)->update([
             'ci'=> request('ci'),
             'nombre'=> request('nombre'),
@@ -109,6 +111,7 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         Empleado::destroy($id);
 
         return redirect('empleados');

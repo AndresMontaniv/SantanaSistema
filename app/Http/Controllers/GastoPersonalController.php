@@ -14,6 +14,10 @@ class GastoPersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $gastopersonals=gastoPersonal::all();
@@ -83,6 +87,7 @@ class GastoPersonalController extends Controller
      */
     public function update(Request $request, gastoPersonal $gastoPersonal)
     {
+        date_default_timezone_set("America/La_Paz");
         $gastoPersonal->detalle=$request->detalle;
         $gastoPersonal->precio=$request->precio;
         $gastoPersonal->save();
@@ -100,6 +105,7 @@ class GastoPersonalController extends Controller
      */
     public function destroy(gastoPersonal $gastoPersonal)
     {
+        date_default_timezone_set("America/La_Paz");
         $gasto=DB::table('gastos')->where('gastosPersonales',$gastoPersonal->id)->value('id');
         $gastoPersonal->delete();
         Gasto::destroy($gasto);

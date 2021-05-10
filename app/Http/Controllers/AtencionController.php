@@ -14,6 +14,10 @@ class AtencionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $atencions=Atencion::all();
@@ -124,6 +128,7 @@ class AtencionController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         $ingreso=DB::table('ingresos')->where('idPagos',$id)->value('id');
         Atencion::destroy($id);
         Ingreso::destroy($ingreso);

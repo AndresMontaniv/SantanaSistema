@@ -14,6 +14,10 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $productos=Producto::all();
@@ -39,6 +43,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $dato=Producto::create([
             'nombre'=> request('nombre'),
             'precioDeCompra'=> request('precioDeCompra'),
@@ -81,6 +86,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        date_default_timezone_set("America/La_Paz");
         $dato=request()->validate([
             'nombre'=> ['required'],
             'precioDeCompra'=> ['required'],
@@ -106,6 +112,7 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         Producto::destroy($id);
         return redirect('productos');
     }

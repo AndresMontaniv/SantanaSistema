@@ -13,6 +13,10 @@ class ReporteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $reportes=Reporte::all();
@@ -92,6 +96,7 @@ class ReporteController extends Controller
      */
     public function edit($id)
     {
+        date_default_timezone_set("America/La_Paz");
         $nombre=DB::table('reportes')->where('id',$id)->value('nombre');
         $gastos=DB::table('gastos')->get();
         $ingresos=DB::table('ingresos')->get();
@@ -133,6 +138,7 @@ class ReporteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        date_default_timezone_set("America/La_Paz");
         DB::table('reportes')->where('id',$id)->update([
             'totalGastos'=> request('totalGastos'),
             'totalIngresos'=> request('totalIngresos'),
@@ -148,6 +154,7 @@ class ReporteController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         Reporte::destroy($id);
         return redirect('reportes');
     }

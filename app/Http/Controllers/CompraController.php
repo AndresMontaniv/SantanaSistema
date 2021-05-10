@@ -17,6 +17,10 @@ class CompraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $compras=Compra::all();
@@ -88,6 +92,7 @@ class CompraController extends Controller
      */
     public function update(Request $request,$id)
     {
+        date_default_timezone_set("America/La_Paz");
         $dato=request()->validate([
             'fecha'=> ['required'],
             'usuarioId'=> ['required'],
@@ -109,6 +114,7 @@ class CompraController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         $notas=DB::table('nota_compras')->where('compraId',$id)->get();
         $gasto=DB::table('gastos')->where('compras',$id)->value('id');
         foreach ($notas as $nota){

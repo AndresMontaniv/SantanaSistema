@@ -13,6 +13,10 @@ class GastoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $gastos=Gasto::all();
@@ -78,7 +82,7 @@ class GastoController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        date_default_timezone_set("America/La_Paz");
         DB::table('gastos')->where('id',$id)->update([
             'idGastosPersonales'=> request('idGastosPersonales'),
             'idPagosSB'=> request('idPagosSB'),
@@ -104,6 +108,7 @@ class GastoController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         Gasto::destroy($id);
         return redirect('gastos'); 
         //preguntar a montano

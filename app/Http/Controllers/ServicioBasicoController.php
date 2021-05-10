@@ -12,6 +12,10 @@ class ServicioBasicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $servicioBasicos=servicioBasico::all();
@@ -88,6 +92,7 @@ class ServicioBasicoController extends Controller
      */
     public function destroy(servicioBasico $servicioBasico)
     {
+        date_default_timezone_set("America/La_Paz");
         $servicioBasico->delete();
         return redirect()->route('servicioBasicos.index');
     }

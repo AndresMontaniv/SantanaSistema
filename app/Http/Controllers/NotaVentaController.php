@@ -16,6 +16,10 @@ class NotaVentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $notaVentas=notaVenta::all();
@@ -40,6 +44,7 @@ class NotaVentaController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $dato=request()->validate([
             'cantidad'=> ['required', 'min:1','max:10'],
             ]);
@@ -119,6 +124,7 @@ class NotaVentaController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         $ventaId=DB::table('nota_ventas')->where('id',$id)->value('ventaId');
         $productoId=DB::table('nota_ventas')->where('id',$id)->value('productoId');
         $productoStock=DB::table('productos')->where('id',$productoId)->value('stock');
