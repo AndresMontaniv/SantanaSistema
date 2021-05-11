@@ -51,6 +51,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $request->validate([
             'name'=>'required|unique:users',
             'password'=>'required',
@@ -111,6 +112,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        date_default_timezone_set("America/La_Paz");
         $request->validate([
             'name'=> "unique:users,name,$user->id",
             'roles'=>'required',
@@ -155,6 +157,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        date_default_timezone_set("America/La_Paz");
         User::destroy($user->id);
         return redirect('users');
     }

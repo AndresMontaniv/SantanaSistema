@@ -42,6 +42,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $this->validate($request,[
             'name'=> 'required|unique:roles'
         ]);
@@ -94,6 +95,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        date_default_timezone_set("America/La_Paz");
         $this->validate($request,[
             'name'=> "required|unique:roles,name,$role->id",
             'name'=> "required|unique:roles,guard_name,$role->id",
@@ -114,6 +116,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        date_default_timezone_set("America/La_Paz");
         Role::destroy($role->id);
         return redirect('roles');
     }

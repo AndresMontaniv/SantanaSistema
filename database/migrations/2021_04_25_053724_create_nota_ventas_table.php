@@ -19,9 +19,8 @@ class CreateNotaVentasTable extends Migration
             $table->unsignedBigInteger('ventaId');
             $table->integer('cantidad');
             $table->float('montoTotal');
-            //$table->foreign('producto_id')->references('id')->on('productos')->onDelete('set null')->onUpdate('cascade');
-
-
+            // $table->foreign('productoId')->references('id')->on('productos')->onUpdate('cascade')->onDelete('set null');
+            // $table->foreign('ventaId')->references('id')->on('ventas')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }

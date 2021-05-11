@@ -13,6 +13,10 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $clientes=Cliente::all();
@@ -38,6 +42,7 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         
+        date_default_timezone_set("America/La_Paz");
         $cliente=Cliente::create([
             'nombre'=> request('nombre'),
             'fechaNac'=> request('fechaNac'),
@@ -82,6 +87,7 @@ class ClienteController extends Controller
     public function update(Request $request, $id)
     {
         
+        date_default_timezone_set("America/La_Paz");
         DB::table('clientes')->where('id',$id)->update([
             'nombre'=> request('nombre'),
             'fechaNac'=> request('fechaNac'),
@@ -103,6 +109,7 @@ class ClienteController extends Controller
     {
         
         
+        date_default_timezone_set("America/La_Paz");
         Cliente::destroy($id);
         return redirect('clientes');
     }

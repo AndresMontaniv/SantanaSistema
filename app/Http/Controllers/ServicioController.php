@@ -13,6 +13,10 @@ class ServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $servicios=Servicio::all();
@@ -37,6 +41,7 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $servicio=Servicio::create([
             'nombre'=> request('nombre'),
             'precio'=> request('precio'),
@@ -77,6 +82,7 @@ class ServicioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        date_default_timezone_set("America/La_Paz");
         DB::table('servicios')->where('id',$id)->update([
             'nombre'=> request('nombre'),
             'precio'=> request('precio')
@@ -93,6 +99,7 @@ class ServicioController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         Servicio::destroy($id);
         return redirect('servicios');
     }

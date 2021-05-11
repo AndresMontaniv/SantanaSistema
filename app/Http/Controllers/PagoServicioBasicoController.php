@@ -14,6 +14,10 @@ class PagoServicioBasicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $pagoServicioBasicos=pagoServicioBasico::all();
@@ -103,6 +107,7 @@ class PagoServicioBasicoController extends Controller
      */
     public function destroy(pagoServicioBasico $pagoServicioBasico)
     {
+        date_default_timezone_set("America/La_Paz");
         $gasto=DB::table('gastos')->where('sb',$pagoServicioBasico->id)->value('id');
         $pagoServicioBasico->delete();
         Gasto::destroy($gasto);

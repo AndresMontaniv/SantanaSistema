@@ -21,9 +21,9 @@ class CreateIngresosTable extends Migration
             $table->float('total');
             $table->timestamps();
 
-            /* $table->foreign('idVentas')->references('id')->on('ventas')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idPagos')->references('id')->on('pagos')->onDelete('cascade')->onUpdate('cascade');
-         */
+            // $table->foreign('idVentas')->references('id')->on('ventas')->onUpdate('cascade')->onDelete('set null');
+            // $table->foreign('idPagos')->references('id')->on('pagos')->onUpdate('cascade')->onDelete('set null');
+
         });
     }
 

@@ -56,7 +56,7 @@
                 <p>DEBE INGRESAR BIEN SU TELEFONO</p>
             @enderror
 
-            <h5>Usuario:</h5>
+            {{-- <h5>Usuario:</h5>
             <select name="user_id" id="select-user" class="form-control border-primary" onchange="habilitar()" >
                 <option value="nulo">Seleccione un Usuario</option>
                     @foreach ($users as $user)
@@ -64,7 +64,7 @@
                             {{$user->name}}
                         </option>
                     @endforeach
-            </select>
+            </select> --}}
             
             <br>
             <br>

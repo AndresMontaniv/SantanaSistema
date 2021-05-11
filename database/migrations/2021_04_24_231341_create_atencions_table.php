@@ -21,6 +21,12 @@ class CreateAtencionsTable extends Migration
             $table->unsignedBigInteger('servicioId');
             $table->unsignedBigInteger('metodoId');
             $table->timestamps();
+
+            // $table->foreign('clienteId')->references('id')->on('clientes')->onUpdate('cascade')->onDelete('set null');
+            // $table->foreign('empleadoId')->references('id')->on('empleados')->onUpdate('cascade')->onDelete('set null');
+            // $table->foreign('servicioId')->references('id')->on('servicios')->onUpdate('cascade')->onDelete('set null');
+            // $table->foreign('metodoId')->references('id')->on('metodos')->onUpdate('cascade')->onDelete('set null');
+            
         });
     }
 

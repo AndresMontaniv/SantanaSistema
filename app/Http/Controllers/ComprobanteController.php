@@ -13,6 +13,10 @@ class ComprobanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $comprobantes=Comprobante::all();
@@ -37,6 +41,7 @@ class ComprobanteController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $comprobante=Comprobante::create([
             'nombre'=> request('nombre'),
         ]);
@@ -76,6 +81,7 @@ class ComprobanteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        date_default_timezone_set("America/La_Paz");
         DB::table('comprobantes')->where('id',$id)->update([
             'nombre'=> request('nombre'),
         ]);
@@ -90,6 +96,7 @@ class ComprobanteController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         Comprobante::destroy($id);
         return redirect('comprobantes'); 
     }

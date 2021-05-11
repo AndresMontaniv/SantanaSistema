@@ -13,6 +13,10 @@ class IngresoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $ingresos=Ingreso::all();
@@ -37,6 +41,7 @@ class IngresoController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set("America/La_Paz");
         $ingreso=Ingreso::create([
             'idVentas'=> request('idVentas'),
             'idPagos'=> request('idPagos'),
@@ -77,6 +82,7 @@ class IngresoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        date_default_timezone_set("America/La_Paz");
         DB::table('ingresos')->where('id',$id)->update([
             'idVentas'=> request('idVentas'),
             'idPagos'=> request('idPagos'),
@@ -92,6 +98,7 @@ class IngresoController extends Controller
      */
     public function destroy($id)
     {
+        date_default_timezone_set("America/La_Paz");
         Ingreso::destroy($id);
         return redirect('ingresos');
     }
