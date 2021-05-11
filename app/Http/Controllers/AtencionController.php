@@ -14,6 +14,7 @@ class AtencionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $atencions=Atencion::all();

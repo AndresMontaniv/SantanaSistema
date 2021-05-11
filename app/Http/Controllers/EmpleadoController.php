@@ -49,7 +49,7 @@ class EmpleadoController extends Controller
             'fechaNac'=> request('fechaNac'),
             'sexo'=> request('sexo'),
             'telefono'=> request('telefono'),
-            'user_id'=> request('user_id'),
+            // 'user_id'=> request('user_id'),
         ]);
         return redirect('empleados');
     }

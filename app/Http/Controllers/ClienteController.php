@@ -37,6 +37,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        
         $cliente=Cliente::create([
             'nombre'=> request('nombre'),
             'fechaNac'=> request('fechaNac'),
@@ -80,6 +81,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         DB::table('clientes')->where('id',$id)->update([
             'nombre'=> request('nombre'),
             'fechaNac'=> request('fechaNac'),
@@ -99,6 +101,8 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
+        
+        
         Cliente::destroy($id);
         return redirect('clientes');
     }
