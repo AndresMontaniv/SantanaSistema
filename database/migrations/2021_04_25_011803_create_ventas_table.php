@@ -18,6 +18,7 @@ class CreateVentasTable extends Migration
             $table->unsignedBigInteger('usuarioId');
             $table->float('total')->nullable();
             $table->timestamps();
+            // $table->foreign('usuarioId')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
         });
     }
 

@@ -19,8 +19,8 @@ class CreateNotaComprasTable extends Migration
             $table->unsignedBigInteger('compraId');
             $table->integer('cantidad');
             $table->float('montoTotal');
-            //$table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
-
+            // $table->foreign('productoId')->references('id')->on('productos')->onUpdate('cascade')->onDelete('set null');
+            // $table->foreign('compraId')->references('id')->on('compras')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }

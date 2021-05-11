@@ -21,10 +21,11 @@ class CreateGastosTable extends Migration
             $table->unsignedBigInteger('compras')->nullable();
             $table->float('total');
             $table->timestamps();
+            // $table->foreign('gastosPersonales')->references('id')->on('gasto_personals')->onUpdate('cascade')->onDelete('set null');
+            // $table->foreign('sb')->references('id')->on('servicio_basicos')->onUpdate('cascade')->onDelete('set null');
+            // $table->foreign('compras')->references('id')->on('compras')->onUpdate('cascade')->onDelete('set null');
+
         
-            // $table->foreign('gastosPersonales')->references('id')->on('gasto_personals');
-            // $table->foreign('compras')->references('id')->on('compras');
-            // $table->foreign('sb')->references('id')->on('pago_servicio_basicos');
         });
     }
 
