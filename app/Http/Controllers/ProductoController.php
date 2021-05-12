@@ -48,7 +48,7 @@ class ProductoController extends Controller
             'nombre'=> request('nombre'),
             'precioDeCompra'=> request('precioDeCompra'),
             'precioDeVenta'=> request('precioDeVenta'),
-            'stock'=>request('stock'),
+            'stock'=>0.0,
         ]);
         return redirect('productos');
     }

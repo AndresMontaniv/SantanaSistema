@@ -58,10 +58,14 @@ class DatabaseSeeder extends Seeder
         $user5->assignRole('Admin');
         $user5->save();
 
-        $this->call(GastoSeeder::class);
-        $this->call(IngresoSeeder::class);
-        $this->call(ReporteSeeder::class);
-        $this->call(ComprobanteSeeder::class);
+        $user6 = new User();
+        $user6->name = 'santana';
+        $user6->email= 'santana@gmail.com';
+        $user6->password = bcrypt('santana');
+        $user6->assignRole('Admin');
+        $user6->save();
+
+        
 
         $empleado1 = new Empleado();
         $empleado1->ci = '123456789';
